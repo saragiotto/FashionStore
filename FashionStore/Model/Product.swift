@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import ObjectMapper
 
-class Product {
+class Product: Mappable {
     
     var name: String?
     var style: String?
@@ -22,5 +23,24 @@ class Product {
     var installments: String?
     var image: String?
     var sizes: [ProductSize]?
+    
+    required init?(map: Map) {
+        
+    }
+    
+    func mapping(map: Map) {
+        name <- map["name"]
+        style <- map["style"]
+        codeColor <- map["code_color"]
+        colorSlug <- map["color_slug"]
+        color <- map["color"]
+        onSale <- map["on_sale"]
+        regularPrice <- map["regular_price"]
+        actualPrice <- map["actual_price"]
+        discountPercentage <- map["discount_percentage"]
+        installments <- map["installments"]
+        image <- map["image"]
+        sizes <- map["sizes"]
+    }
 
 }

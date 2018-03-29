@@ -7,11 +7,21 @@
 //
 
 import Foundation
+import ObjectMapper
 
-class ProductSize {
+class ProductSize: Mappable {
     
     var available: Bool?
     var size: String?
     var sku: String?
 
+    required init?(map: Map) {
+        
+    }
+    
+    func mapping(map: Map) {
+        available <- map["available"]
+        size <- map["size"]
+        sku <- map["sku"]
+    }
 }
