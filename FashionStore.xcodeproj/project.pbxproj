@@ -17,6 +17,7 @@
 		982C77FE206D675F003228EF /* ProductSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982C77FD206D675F003228EF /* ProductSize.swift */; };
 		982C7800206D6769003228EF /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982C77FF206D6769003228EF /* Cart.swift */; };
 		982C7802206D677F003228EF /* CartProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982C7801206D677F003228EF /* CartProduct.swift */; };
+		982C7805206D6B42003228EF /* Products.json in Resources */ = {isa = PBXBuildFile; fileRef = 982C7804206D6B42003228EF /* Products.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		982C77FD206D675F003228EF /* ProductSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSize.swift; sourceTree = "<group>"; };
 		982C77FF206D6769003228EF /* Cart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
 		982C7801206D677F003228EF /* CartProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartProduct.swift; sourceTree = "<group>"; };
+		982C7804206D6B42003228EF /* Products.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Products.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,13 +87,11 @@
 		982463EB206D654D002E3F40 /* FashionStore */ = {
 			isa = PBXGroup;
 			children = (
+				982C7803206D6B1E003228EF /* Support */,
 				982C77FA206D6731003228EF /* Model */,
-				982463EC206D654D002E3F40 /* AppDelegate.swift */,
 				982463EE206D654D002E3F40 /* ViewController.swift */,
 				982463F0206D654D002E3F40 /* Main.storyboard */,
-				982463F3206D654D002E3F40 /* Assets.xcassets */,
 				982463F5206D654D002E3F40 /* LaunchScreen.storyboard */,
-				982463F8206D654D002E3F40 /* Info.plist */,
 			);
 			path = FashionStore;
 			sourceTree = "<group>";
@@ -114,6 +114,17 @@
 				982C7801206D677F003228EF /* CartProduct.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		982C7803206D6B1E003228EF /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				982463EC206D654D002E3F40 /* AppDelegate.swift */,
+				982463F3206D654D002E3F40 /* Assets.xcassets */,
+				982463F8206D654D002E3F40 /* Info.plist */,
+				982C7804206D6B42003228EF /* Products.json */,
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,6 +211,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				982463F7206D654D002E3F40 /* LaunchScreen.storyboard in Resources */,
+				982C7805206D6B42003228EF /* Products.json in Resources */,
 				982463F4206D654D002E3F40 /* Assets.xcassets in Resources */,
 				982463F2206D654D002E3F40 /* Main.storyboard in Resources */,
 			);
@@ -378,7 +390,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = FashionStore/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/FashionStore/Support/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.home.FashionStore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -392,7 +404,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = FashionStore/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/FashionStore/Support/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.home.FashionStore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
