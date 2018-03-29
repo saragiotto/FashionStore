@@ -25,6 +25,11 @@ class FashionStoreTests: XCTestCase {
         let exp = expectation(description: "\(#function)\(#line)")
         let viewModel = ProductViewModel()
         
+        viewModel.didFinishFetchClosure = {
+            XCTAssert(viewModel.products.count > 0)
+            exp.fulfill()
+        }
+        
         viewModel.fetchProducts()
         
         waitForExpectations(timeout: 10, handler: nil)

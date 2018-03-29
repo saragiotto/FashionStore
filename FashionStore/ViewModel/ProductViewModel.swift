@@ -11,9 +11,13 @@ import Alamofire
 import AlamofireObjectMapper
 
 class ProductViewModel {
-    var products: [Product]
+    var products: [Product] {
+        didSet {
+            self.didFinishFetchClosure?()
+        }
+    }
     
-    var reloadTableViewClosure: (() -> ())?
+    var didFinishFetchClosure: (() -> ())?
     
     private var page: Int
     
@@ -25,8 +29,6 @@ class ProductViewModel {
     func fetchProducts() {
         
         Alamofire.request(kFashionUrl).responseObject { (response: DataResponse<ProductResponse>) in
-            
-            print("Response \(response)")
             
             switch response.result {
             case .success(let result):
