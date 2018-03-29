@@ -9,7 +9,7 @@
 import XCTest
 @testable import FashionStore
 
-class FashionStoreTests: XCTestCase {
+class ProdutcViewModelTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -21,7 +21,7 @@ class FashionStoreTests: XCTestCase {
         super.tearDown()
     }
     
-    func testProductViewModel() {
+    func testFetchProducts() {
         let exp = expectation(description: "\(#function)\(#line)")
         let viewModel = ProductViewModel()
         
