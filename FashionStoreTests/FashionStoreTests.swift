@@ -21,16 +21,13 @@ class FashionStoreTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testProductViewModel() {
+        let exp = expectation(description: "\(#function)\(#line)")
+        let viewModel = ProductViewModel()
+        
+        viewModel.fetchProducts()
+        
+        waitForExpectations(timeout: 10, handler: nil)
     }
     
 }

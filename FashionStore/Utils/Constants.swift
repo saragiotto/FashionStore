@@ -8,4 +8,4 @@
 
 import Foundation
 
-static let fashionUrl = "https://raw.githubusercontent.com/saragiotto/FashionStore/develop/FashionStore/Support/Products.json"
+let kFashionUrl = "https://raw.githubusercontent.com/saragiotto/FashionStore/develop/FashionStore/Support/Products.json"

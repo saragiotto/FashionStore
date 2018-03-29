@@ -7,3 +7,38 @@
 //
 
 import Foundation
+import Alamofire
+import AlamofireObjectMapper
+
+class ProductViewModel {
+    var products: [Product]
+    
+    var reloadTableViewClosure: (() -> ())?
+    
+    private var page: Int
+    
+    init() {
+        self.products = [Product]()
+        self.page = 1
+    }
+    
+    func fetchProducts() {
+        
+        Alamofire.request(kFashionUrl).responseObject { (response: DataResponse<ProductResponse>) in
+            
+            print("Response \(response)")
+            
+            switch response.result {
+            case .success(let result):
+                if let products = result.products {
+                    self.products += products
+                }
+                self.page += 1
+                break
+            case .failure:
+                print("Error requesting shots")
+                break
+            }
+        }
+    }
+}
