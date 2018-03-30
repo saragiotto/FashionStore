@@ -25,6 +25,7 @@
 		A73695A4206E84ED00B1ED50 /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73695A3206E84ED00B1ED50 /* ProductViewController.swift */; };
 		A73695A9206E869800B1ED50 /* ProductViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73695A7206E869800B1ED50 /* ProductViewCell.swift */; };
 		A73695AA206E869800B1ED50 /* ProductViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A73695A8206E869800B1ED50 /* ProductViewCell.xib */; };
+		A7770CA6206E9E0600F61FC0 /* EdgeInsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7770CA5206E9E0600F61FC0 /* EdgeInsetLabel.swift */; };
 		A7AFF758206DBCCE00DEFCBB /* CartViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AFF757206DBCCD00DEFCBB /* CartViewModelTests.swift */; };
 		A9A364998B32A1ECD292CDE3 /* Pods_FashionStoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2AFF3E59AB6DCBFA44D8728 /* Pods_FashionStoreTests.framework */; };
 /* End PBXBuildFile section */
@@ -62,6 +63,7 @@
 		A73695A3206E84ED00B1ED50 /* ProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
 		A73695A7206E869800B1ED50 /* ProductViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewCell.swift; sourceTree = "<group>"; };
 		A73695A8206E869800B1ED50 /* ProductViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductViewCell.xib; sourceTree = "<group>"; };
+		A7770CA5206E9E0600F61FC0 /* EdgeInsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsetLabel.swift; sourceTree = "<group>"; };
 		A7AFF757206DBCCD00DEFCBB /* CartViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewModelTests.swift; sourceTree = "<group>"; };
 		B6322DDB4B696BB54B214E14 /* Pods-FashionStoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FashionStoreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FashionStoreTests/Pods-FashionStoreTests.release.xcconfig"; sourceTree = "<group>"; };
 		BC0A95A51BEB3CDA6141CA18 /* Pods-FashionStoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FashionStoreTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FashionStoreTests/Pods-FashionStoreTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 		982463EB206D654D002E3F40 /* FashionStore */ = {
 			isa = PBXGroup;
 			children = (
+				A7770CA4206E9DEE00F61FC0 /* Extension */,
 				A73695A6206E867700B1ED50 /* View */,
 				A73695A2206E84C900B1ED50 /* ViewController */,
 				982C780B206D74D1003228EF /* ViewModel */,
@@ -207,6 +210,14 @@
 				A73695A8206E869800B1ED50 /* ProductViewCell.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		A7770CA4206E9DEE00F61FC0 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				A7770CA5206E9E0600F61FC0 /* EdgeInsetLabel.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		F7EDD31F9055DFFD43FFADC6 /* Pods */ = {
@@ -442,6 +453,7 @@
 				982C7808206D74BB003228EF /* ProductViewModel.swift in Sources */,
 				982C77FE206D675F003228EF /* ProductSize.swift in Sources */,
 				982C7800206D6769003228EF /* Cart.swift in Sources */,
+				A7770CA6206E9E0600F61FC0 /* EdgeInsetLabel.swift in Sources */,
 				982C780A206D74CB003228EF /* CartViewModel.swift in Sources */,
 				982C7802206D677F003228EF /* CartProduct.swift in Sources */,
 				982C7810206D7CE6003228EF /* ProductResponse.swift in Sources */,
