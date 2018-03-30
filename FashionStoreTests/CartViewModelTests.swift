@@ -218,4 +218,29 @@ class CartViewModelTests: XCTestCase {
         
         waitForExpectations(timeout: 10, handler: nil)
     }
+    
+    func testCartAmoutCheckForEmptyState() {
+        let exp = expectation(description: "\(#function)\(#line)")
+        let productVM = ProductViewModel()
+        
+        productVM.didFinishFetchClosure = {
+            if let product = productVM.products.first {
+                let cartItem = CartProduct(product, size: product.sizes!.first!, color: product.color!)
+                
+                self.viewModel?.addItem(cartItem)
+                self.viewModel?.removeItem(cartItem)
+                let totalCart = self.viewModel?.totalCart()
+                
+                XCTAssert(totalCart == "R$ 0,00")
+                
+            } else {
+                XCTAssert(false)
+            }
+            
+            exp.fulfill()
+        }
+        productVM.fetchProducts()
+        
+        waitForExpectations(timeout: 10, handler: nil)
+    }
 }
