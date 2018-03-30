@@ -22,7 +22,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3bC-y3-5UE">
                         <rect key="frame" x="0.0" y="0.0" width="175" height="220"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Q3v-nA-7nS">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Q3v-nA-7nS">
                                 <rect key="frame" x="0.0" y="0.0" width="175" height="220"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="220" id="YLw-nU-r32"/>
@@ -47,14 +47,17 @@
                             <constraint firstItem="Q3v-nA-7nS" firstAttribute="leading" secondItem="3bC-y3-5UE" secondAttribute="leading" id="w7I-oY-WBf"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="45" translatesAutoresizingMaskIntoConstraints="NO" id="oGZ-gc-wrq">
-                        <rect key="frame" x="0.0" y="240.5" width="175" height="18"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="45" translatesAutoresizingMaskIntoConstraints="NO" id="oGZ-gc-wrq">
+                        <rect key="frame" x="0.0" y="248.5" width="175" height="21.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="45" translatesAutoresizingMaskIntoConstraints="NO" id="PeE-x2-KaA">
-                        <rect key="frame" x="0.0" y="220" width="175" height="20.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="45" translatesAutoresizingMaskIntoConstraints="NO" id="PeE-x2-KaA">
+                        <rect key="frame" x="0.0" y="220" width="175" height="28.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="28" id="Xe3-05-DCx"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -62,17 +65,28 @@
                 </subviews>
             </view>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="PeE-x2-KaA" secondAttribute="trailing" id="33j-Ul-6eX"/>
-                <constraint firstItem="oGZ-gc-wrq" firstAttribute="top" secondItem="PeE-x2-KaA" secondAttribute="bottom" id="7sg-WA-MOw"/>
+                <constraint firstItem="PeE-x2-KaA" firstAttribute="top" secondItem="3bC-y3-5UE" secondAttribute="bottom" id="8l8-ca-qa6"/>
+                <constraint firstItem="oGZ-gc-wrq" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="9QE-I6-MWl"/>
                 <constraint firstItem="3bC-y3-5UE" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Mf3-GM-Axx"/>
-                <constraint firstItem="PeE-x2-KaA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="MgD-ul-bIo"/>
                 <constraint firstItem="3bC-y3-5UE" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Pd3-qE-PYJ"/>
+                <constraint firstItem="PeE-x2-KaA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Pfd-g1-jXC"/>
                 <constraint firstItem="oGZ-gc-wrq" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="QMh-mJ-Bju"/>
+                <constraint firstAttribute="bottom" secondItem="oGZ-gc-wrq" secondAttribute="bottom" id="ZEu-rM-7eb"/>
+                <constraint firstItem="oGZ-gc-wrq" firstAttribute="top" secondItem="PeE-x2-KaA" secondAttribute="bottom" id="fch-hK-iRg"/>
                 <constraint firstAttribute="trailing" secondItem="3bC-y3-5UE" secondAttribute="trailing" id="i44-5C-P7b"/>
+                <constraint firstAttribute="trailing" secondItem="oGZ-gc-wrq" secondAttribute="trailing" id="jm8-Bz-Yjq"/>
+                <constraint firstAttribute="trailing" secondItem="PeE-x2-KaA" secondAttribute="trailing" id="ogr-fD-30Q"/>
                 <constraint firstAttribute="trailing" secondItem="oGZ-gc-wrq" secondAttribute="trailing" id="wpa-Nt-gDX"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="177" height="249"/>
+            <connections>
+                <outlet property="discountLabel" destination="Kuy-bw-6bd" id="O2n-LX-Wrp"/>
+                <outlet property="imageView" destination="Q3v-nA-7nS" id="jlH-6v-WDS"/>
+                <outlet property="nameLabel" destination="PeE-x2-KaA" id="lbA-h4-zgy"/>
+                <outlet property="priceLabel" destination="oGZ-gc-wrq" id="5bh-qb-lau"/>
+                <outlet property="productView" destination="3bC-y3-5UE" id="N8k-Nc-JYL"/>
+            </connections>
             <point key="canvasLocation" x="88.5" y="151.5"/>
         </collectionViewCell>
     </objects>

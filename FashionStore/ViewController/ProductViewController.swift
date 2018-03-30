@@ -8,20 +8,29 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
-
 class ProductViewController: UICollectionViewController {
+    
+    var productVM = ProductViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
+        
+        configureView()
+        configureViewModel()
+    }
+    
+    private func configureView() {
+        self.clearsSelectionOnViewWillAppear = true
+        
+        let productCellNib = UINib.init(nibName: "ProductViewCell", bundle: nil)
+        self.collectionView?.register(productCellNib, forCellWithReuseIdentifier: kProductCellIdentifier)
+    }
+    
+    private func configureViewModel() {
+        productVM.didFinishFetchClosure = {
+            self.collectionView?.reloadData()
+        }
+        productVM.fetchProducts()
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,21 +52,22 @@ class ProductViewController: UICollectionViewController {
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 0
+        return productVM.numberOfCells
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kProductCellIdentifier, for: indexPath) as? ProductViewCell {
+            cell.configure(with: productVM.getProductCell(at: indexPath))
+            return cell
+        }
     
-        // Configure the cell
-    
-        return cell
+        return UICollectionViewCell()
     }
 
     // MARK: UICollectionViewDelegate

@@ -17,6 +17,10 @@ class ProductViewModel {
         }
     }
     
+    var numberOfCells: Int {
+        return products.count
+    }
+    
     var didFinishFetchClosure: (() -> ())?
     
     private var page: Int
@@ -43,4 +47,25 @@ class ProductViewModel {
             }
         }
     }
+    
+    func getProductCell(at indexPath: IndexPath) -> ProductCellModel {
+        
+        let productModel = self.products[indexPath.row]
+        
+        return ProductCellModel(imageUrl: productModel.image ?? "",
+                                discount: productModel.discountPercentage ?? "",
+                                name: productModel.name ?? "",
+                                onSale: productModel.onSale ?? false,
+                                regularPrice: productModel.regularPrice ?? "",
+                                actualPrice: productModel.actualPrice ?? "")
+    }
+}
+
+struct ProductCellModel {
+    let imageUrl: String
+    let discount: String
+    let name: String
+    let onSale: Bool
+    let regularPrice: String
+    let actualPrice: String
 }
