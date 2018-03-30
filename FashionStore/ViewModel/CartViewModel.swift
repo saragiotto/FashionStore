@@ -46,7 +46,7 @@ class CartViewModel {
         formatter.currencySymbol = String(format: "%@%@", formatter.currencySymbol, " ")
         
         let amount = cart.products?.reduce(0.0, { amount, productCart in
-            amount + (productCart.product.productPrice ?? 0.0)
+            amount + ((productCart.product.productPrice ?? 0.0) * Double(productCart.count))
         })
         
         return formatter.string(for: amount) ?? ""

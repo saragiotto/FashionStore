@@ -131,9 +131,9 @@
 		98246400206D654D002E3F40 /* FashionStoreTests */ = {
 			isa = PBXGroup;
 			children = (
+				A7AFF757206DBCCD00DEFCBB /* CartViewModelTests.swift */,
 				98246401206D654D002E3F40 /* ProductViewModelTests.swift */,
 				98246403206D654D002E3F40 /* Info.plist */,
-				A7AFF757206DBCCD00DEFCBB /* CartViewModelTests.swift */,
 			);
 			path = FashionStoreTests;
 			sourceTree = "<group>";

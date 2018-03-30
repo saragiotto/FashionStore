@@ -51,7 +51,7 @@ extension Product {
         formatter.numberStyle = .currency
         formatter.locale = Locale(identifier: kDefaultLocale)
         
-        if let actual = actualPrice {
+        if (onSale ?? false), let actual = actualPrice {
             if let number = formatter.number(from: actual.replacingOccurrences(of: " ", with: "")) {
                 return number.doubleValue
             }
