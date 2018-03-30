@@ -21,3 +21,21 @@ class ProductCart {
         self.count = count
     }
 }
+
+extension ProductCart {
+    static func ==(lhs: ProductCart, hrs: ProductCart) -> Bool {
+        if let lhsSku = lhs.size.sku, let hrsSku = hrs.size.sku {
+            return lhsSku == hrsSku
+        }
+        
+        return false
+    }
+    
+    static func !=(lhs: ProductCart, hrs: ProductCart) -> Bool {
+        if let lhsSku = lhs.size.sku, let hrsSku = hrs.size.sku {
+            return lhsSku != hrsSku
+        }
+        
+        return false
+    }
+}

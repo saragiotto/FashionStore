@@ -44,3 +44,25 @@ class Product: Mappable {
     }
 
 }
+
+extension Product {
+    var productPrice: Double? {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.locale = Locale(identifier: kDefaultLocale)
+        
+        if let actual = actualPrice {
+            if let number = formatter.number(from: actual) {
+                return number.doubleValue
+            }
+        }
+        
+        if let regular = regularPrice {
+            if let number = formatter.number(from: regular) {
+                return number.doubleValue
+            }
+        }
+        
+        return nil
+    }
+}

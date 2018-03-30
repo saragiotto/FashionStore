@@ -9,3 +9,4 @@
 import Foundation
 
 let kFashionUrl = "https://raw.githubusercontent.com/saragiotto/FashionStore/develop/FashionStore/Support/Products.json"
+let kDefaultLocale = "pt_BR"
