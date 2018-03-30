@@ -48,7 +48,7 @@ class CartViewModelTests: XCTestCase {
         waitForExpectations(timeout: 10, handler: nil)
     }
     
-    func testCartAmoutCheck() {
+    func testCartAmoutCheckWithOneItem() {
         let exp = expectation(description: "\(#function)\(#line)")
         let productVM = ProductViewModel()
         
@@ -65,6 +65,38 @@ class CartViewModelTests: XCTestCase {
                 XCTAssert(false)
             }
             
+            
+            exp.fulfill()
+        }
+        
+        productVM.fetchProducts()
+        
+        waitForExpectations(timeout: 10, handler: nil)
+    }
+    
+    func testCartAmoutCheckWithMultipleItens() {
+        let exp = expectation(description: "\(#function)\(#line)")
+        let productVM = ProductViewModel()
+        
+        productVM.didFinishFetchClosure = {
+            if let product = productVM.products.first {
+                let firstItem = CartProduct(product, size: product.sizes!.first!, color: product.color!)
+                
+                self.viewModel?.addItem(firstItem)
+            } else {
+                XCTAssert(false)
+            }
+            
+            if let anotherProduct = productVM.products.last {
+                let secondItem = CartProduct(anotherProduct, size: anotherProduct.sizes!.first!, color: anotherProduct.color!)
+                
+                self.viewModel?.addItem(secondItem)
+            
+                let totalCart = self.viewModel?.totalCart()
+                XCTAssert(totalCart == "R$ 229,80")
+            } else {
+                XCTAssert(false)
+            }
             
             exp.fulfill()
         }

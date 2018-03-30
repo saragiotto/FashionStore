@@ -43,7 +43,7 @@ class CartViewModel {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
         formatter.locale = Locale(identifier: kDefaultLocale)
-        formatter.currencySymbol = "\(formatter.currencySymbol!) "
+        formatter.currencySymbol = String(format: "%@%@", formatter.currencySymbol, " ")
         
         let amount = cart.products?.reduce(0.0, { amount, productCart in
             amount + (productCart.product.productPrice ?? 0.0)
