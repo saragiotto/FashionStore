@@ -31,7 +31,7 @@ class ProductViewCell: UICollectionViewCell {
             discountLabel.clipsToBounds = true
             discountLabel.text = "\(cellModel.discount) off"
             
-            priceLabel.text = cellModel.actualPrice
+            priceLabel.attributedText = attributedString(cellModel)
         } else {
             discountLabel.text = ""
         }
@@ -43,6 +43,13 @@ class ProductViewCell: UICollectionViewCell {
             imageView.kf.setImage(with: url,
                                   options:[.transition(.fade(0.3))])
         }
+    }
+    
+    private func attributedString(_ cellModel:ProductCellModel) -> NSAttributedString {
+        let attrString = NSMutableAttributedString(string: "\(cellModel.regularPrice) \(cellModel.actualPrice)")
+        attrString.addAttribute(NSAttributedStringKey.strikethroughStyle, value: 1, range: NSMakeRange(0, cellModel.regularPrice.count))
+        
+        return attrString
     }
     
     override func prepareForReuse() {
