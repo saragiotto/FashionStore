@@ -20,13 +20,13 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3bC-y3-5UE">
-                        <rect key="frame" x="0.0" y="0.0" width="175" height="298.5"/>
+                        <rect key="frame" x="1" y="0.0" width="173" height="298.5"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Q3v-nA-7nS">
-                                <rect key="frame" x="0.0" y="0.0" width="175" height="298.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="173" height="298.5"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discount" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kuy-bw-6bd" customClass="EdgeInsetLabel" customModule="FashionStore" customModuleProvider="target">
-                                <rect key="frame" x="100.5" y="4" width="70.5" height="14.5"/>
+                                <rect key="frame" x="98.5" y="4" width="70.5" height="14.5"/>
                                 <color key="backgroundColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -41,7 +41,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Kuy-bw-6bd" secondAttribute="trailing" constant="4" id="1pi-W2-EdS"/>
                             <constraint firstAttribute="trailing" secondItem="Q3v-nA-7nS" secondAttribute="trailing" id="2LS-Lv-GEX"/>
@@ -67,12 +67,12 @@
             </view>
             <constraints>
                 <constraint firstItem="PeE-x2-KaA" firstAttribute="top" secondItem="3bC-y3-5UE" secondAttribute="bottom" id="8l8-ca-qa6"/>
-                <constraint firstItem="3bC-y3-5UE" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Mf3-GM-Axx"/>
+                <constraint firstItem="3bC-y3-5UE" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="1" id="Mf3-GM-Axx"/>
                 <constraint firstItem="3bC-y3-5UE" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Pd3-qE-PYJ"/>
                 <constraint firstItem="PeE-x2-KaA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="4" id="Pfd-g1-jXC"/>
                 <constraint firstItem="oGZ-gc-wrq" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="QMh-mJ-Bju"/>
                 <constraint firstItem="oGZ-gc-wrq" firstAttribute="top" secondItem="PeE-x2-KaA" secondAttribute="bottom" id="fch-hK-iRg"/>
-                <constraint firstAttribute="trailing" secondItem="3bC-y3-5UE" secondAttribute="trailing" id="i44-5C-P7b"/>
+                <constraint firstAttribute="trailing" secondItem="3bC-y3-5UE" secondAttribute="trailing" constant="1" id="i44-5C-P7b"/>
                 <constraint firstAttribute="trailing" secondItem="oGZ-gc-wrq" secondAttribute="trailing" constant="4" id="jm8-Bz-Yjq"/>
                 <constraint firstAttribute="trailing" secondItem="PeE-x2-KaA" secondAttribute="trailing" constant="4" id="ogr-fD-30Q"/>
                 <constraint firstAttribute="bottom" secondItem="oGZ-gc-wrq" secondAttribute="bottom" id="uLg-DV-XZF"/>
