@@ -9,9 +9,12 @@
 import Foundation
 
 class Cart {
-    var products: [ProductCart]?
+    var products: [CartProduct]?
     var discountCupom: String?
     var zipCode: String?
     var totalPrice: String?
-    
+ 
+    init() {
+        products = [CartProduct]()
+    }
 }

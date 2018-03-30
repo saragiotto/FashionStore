@@ -52,13 +52,13 @@ extension Product {
         formatter.locale = Locale(identifier: kDefaultLocale)
         
         if let actual = actualPrice {
-            if let number = formatter.number(from: actual) {
+            if let number = formatter.number(from: actual.replacingOccurrences(of: " ", with: "")) {
                 return number.doubleValue
             }
         }
         
         if let regular = regularPrice {
-            if let number = formatter.number(from: regular) {
+            if let number = formatter.number(from: regular.replacingOccurrences(of: " ", with: "")) {
                 return number.doubleValue
             }
         }

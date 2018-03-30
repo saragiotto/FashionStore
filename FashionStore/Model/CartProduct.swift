@@ -8,13 +8,13 @@
 
 import Foundation
 
-class ProductCart {
+class CartProduct {
     var product: Product
     var size: ProductSize
     var color: String
     var count: Int
     
-    required init?(_ product: Product, size: ProductSize, color: String, count: Int = 1) {
+    init(_ product: Product, size: ProductSize, color: String, count: Int = 1) {
         self.product = product
         self.size = size
         self.color = color
@@ -22,8 +22,8 @@ class ProductCart {
     }
 }
 
-extension ProductCart {
-    static func ==(lhs: ProductCart, hrs: ProductCart) -> Bool {
+extension CartProduct {
+    static func ==(lhs: CartProduct, hrs: CartProduct) -> Bool {
         if let lhsSku = lhs.size.sku, let hrsSku = hrs.size.sku {
             return lhsSku == hrsSku
         }
@@ -31,7 +31,7 @@ extension ProductCart {
         return false
     }
     
-    static func !=(lhs: ProductCart, hrs: ProductCart) -> Bool {
+    static func !=(lhs: CartProduct, hrs: CartProduct) -> Bool {
         if let lhsSku = lhs.size.sku, let hrsSku = hrs.size.sku {
             return lhsSku != hrsSku
         }
