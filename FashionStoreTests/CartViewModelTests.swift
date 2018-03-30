@@ -39,10 +39,8 @@ class CartViewModelTests: XCTestCase {
                 XCTAssert(false)
             }
             
-            
             exp.fulfill()
         }
-        
         productVM.fetchProducts()
         
         waitForExpectations(timeout: 10, handler: nil)
@@ -65,10 +63,8 @@ class CartViewModelTests: XCTestCase {
                 XCTAssert(false)
             }
             
-            
             exp.fulfill()
         }
-        
         productVM.fetchProducts()
         
         waitForExpectations(timeout: 10, handler: nil)
@@ -100,7 +96,6 @@ class CartViewModelTests: XCTestCase {
             
             exp.fulfill()
         }
-        
         productVM.fetchProducts()
         
         waitForExpectations(timeout: 10, handler: nil)
@@ -125,10 +120,8 @@ class CartViewModelTests: XCTestCase {
                 XCTAssert(false)
             }
             
-            
             exp.fulfill()
         }
-        
         productVM.fetchProducts()
         
         waitForExpectations(timeout: 10, handler: nil)
@@ -152,6 +145,71 @@ class CartViewModelTests: XCTestCase {
                 XCTAssert(false)
             }
             
+            exp.fulfill()
+        }
+        
+        productVM.fetchProducts()
+        
+        waitForExpectations(timeout: 10, handler: nil)
+    }
+    
+    func testCartAmoutCheckRemovingItem() {
+        let exp = expectation(description: "\(#function)\(#line)")
+        let productVM = ProductViewModel()
+        
+        productVM.didFinishFetchClosure = {
+            guard let product = productVM.products.first else {
+                XCTAssert(false)
+                return
+            }
+            guard let anotherProduct = productVM.products.last else {
+                XCTAssert(false)
+                return
+            }
+            
+            let firstItem = CartProduct(product, size: product.sizes!.first!, color: product.color!)
+            self.viewModel?.addItem(firstItem)
+            let secondItem = CartProduct(anotherProduct, size: anotherProduct.sizes!.first!, color: anotherProduct.color!)
+            self.viewModel?.addItem(secondItem)
+            
+            var totalCart = self.viewModel?.totalCart()
+            XCTAssert(totalCart == "R$ 229,80")
+            
+            self.viewModel?.removeAllItens(firstItem)
+            
+            totalCart = self.viewModel?.totalCart()
+            XCTAssert(totalCart == "R$ 29,90")
+                
+            exp.fulfill()
+        }
+        productVM.fetchProducts()
+        
+        waitForExpectations(timeout: 10, handler: nil)
+    }
+    
+    func testCartAmoutCheckRemovingSameItem() {
+        let exp = expectation(description: "\(#function)\(#line)")
+        let productVM = ProductViewModel()
+        
+        productVM.didFinishFetchClosure = {
+            if let product = productVM.products.first {
+                let cartItem = CartProduct(product, size: product.sizes!.first!, color: product.color!)
+                
+                self.viewModel?.addItem(cartItem)
+                self.viewModel?.addItem(cartItem)
+                self.viewModel?.addItem(cartItem)
+                
+                var totalCart = self.viewModel?.totalCart()
+                XCTAssert(totalCart == "R$ 599,70")
+                
+                self.viewModel?.removeItem(cartItem)
+                self.viewModel?.removeItem(cartItem)
+                
+                totalCart = self.viewModel?.totalCart()
+                XCTAssert(totalCart == "R$ 199,90")
+            } else {
+                XCTAssert(false)
+            }
             
             exp.fulfill()
         }
