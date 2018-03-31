@@ -67,6 +67,13 @@ class ProductDetailViewController: UIViewController, UICollectionViewDelegate, U
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.backgroundColor = .black
+        
+        let indexPath = sizeCollection.indexPathsForVisibleItems
+        let _ = indexPath.map({ index in
+            if let cell = sizeCollection.cellForItem(at: index) as? SizeViewCell {
+                cell.layer.borderWidth = 0.0
+            }
+        })
     }
     
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
