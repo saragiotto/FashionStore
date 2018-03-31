@@ -49,4 +49,17 @@ class ProdutcViewModelTests: XCTestCase {
         waitForExpectations(timeout: 10, handler: nil)
     }
     
+    func testProductsOnSaleCount() {
+        let exp = expectation(description: "\(#function)\(#line)")
+        let viewModel = ProductViewModel()
+        
+        viewModel.didFinishFetchClosure = {
+            XCTAssert(viewModel.numberOfCells == 8)
+            exp.fulfill()
+        }
+        
+        viewModel.fetchProducts(onSale: true)
+        
+        waitForExpectations(timeout: 10, handler: nil)
+    }
 }

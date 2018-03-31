@@ -30,14 +30,21 @@ class ProductViewModel {
         self.page = 1
     }
     
-    func fetchProducts() {
+    func fetchProducts(onSale: Bool = false) {
         
         Alamofire.request(kFashionUrl).responseObject { (response: DataResponse<ProductResponse>) in
             
             switch response.result {
             case .success(let result):
                 if let products = result.products {
-                    self.products += products
+                    if (!onSale)  {
+                        self.products += products
+                    } else {
+                        let onSaleList = products.filter({ product in
+                            return (product.onSale ?? false)
+                        })
+                        self.products += onSaleList
+                    }
                 }
                 self.page += 1
                 break
