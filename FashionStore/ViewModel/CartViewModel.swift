@@ -9,7 +9,7 @@
 import Foundation
 
 class CartViewModel {
-    var cart: Cart
+    private var cart: Cart
     
     var cartItens: Int {
         return cart.products?.reduce(0, { amount, productCart in
@@ -21,22 +21,40 @@ class CartViewModel {
         cart = Cart()
     }
     
-    func addItem(_ productCart: CartProduct) {
-        if let prod = cartHasItem(productCart) {
+    func getCartItem(at indexPath:IndexPath) -> CartProduct? {
+        return (cart.products?.indices.contains(indexPath.row) ?? false) ? cart.products?[indexPath.row] : nil
+    }
+    
+    func addProduct(_ product: Product, of size: ProductSize) {
+        let cartItem = CartProduct(product, size: size, color: product.color ?? "")
+        
+        if let prod = cartHasItem(cartItem) {
             prod.count += 1
         } else {
-            cart.products?.append(productCart)
+            cart.products?.append(cartItem)
         }
     }
     
-    func removeItem(_ productCart: CartProduct) {
+    func removeItem(at indexPath:IndexPath) {
+        guard let productCart = self.getCartItem(at: indexPath) else { return }
+        
         if let prod = cartHasItem(productCart) {
             if prod.count > 1 {
                 prod.count -= 1
             } else {
-                removeAllItens(productCart)
+                removeAllItens(at: indexPath)
             }
         }
+    }
+    
+    func removeAllItens(at indexPath:IndexPath) {
+        guard let productCart = self.getCartItem(at: indexPath) else { return }
+        
+        cart.products = cart.products?.filter({$0 != productCart})
+    }
+    
+    private func cartHasItem(_ productCart: CartProduct) -> CartProduct? {
+        return cart.products?.filter({$0 == productCart}).first
     }
     
     func totalCart() -> String {
@@ -50,13 +68,5 @@ class CartViewModel {
         })
         
         return formatter.string(for: amount) ?? ""
-    }
-    
-    func removeAllItens(_ productCart: CartProduct) {
-        cart.products = cart.products?.filter({$0 != productCart})
-    }
-    
-    private func cartHasItem(_ productCart: CartProduct) -> CartProduct? {
-        return cart.products?.filter({$0 == productCart}).first
     }
 }

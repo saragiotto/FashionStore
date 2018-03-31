@@ -26,7 +26,7 @@ class ProdutcViewModelTests: XCTestCase {
         let viewModel = ProductViewModel()
         
         viewModel.didFinishFetchClosure = {
-            XCTAssert(viewModel.products.count > 0)
+            XCTAssert(viewModel.numberOfCells > 0)
             exp.fulfill()
         }
         
@@ -40,7 +40,7 @@ class ProdutcViewModelTests: XCTestCase {
         let viewModel = ProductViewModel()
         
         viewModel.didFinishFetchClosure = {
-            XCTAssert(viewModel.products.count == 22)
+            XCTAssert(viewModel.numberOfCells == 22)
             exp.fulfill()
         }
         

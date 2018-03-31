@@ -11,17 +11,17 @@ import Alamofire
 import AlamofireObjectMapper
 
 class ProductViewModel {
-    var products: [Product] {
-        didSet {
-            self.didFinishFetchClosure?()
-        }
-    }
-    
     var numberOfCells: Int {
         return products.count
     }
     
     var didFinishFetchClosure: (() -> ())?
+    
+    private var products: [Product] {
+        didSet {
+            self.didFinishFetchClosure?()
+        }
+    }
     
     private var page: Int
     
@@ -95,6 +95,22 @@ class ProductViewModel {
                                   color: productModel.color?.capitalized ?? "",
                                   price: price ?? "",
                                   sizes: sizes ?? [])
+    }
+    
+    func getProductModel(at indexPath:IndexPath) -> Product? {
+        return self.products.indices.contains(indexPath.row) ? self.products[indexPath.row] : nil
+    }
+    
+    func getAvailableSize(_ product:Product, at indexPath:IndexPath) -> ProductSize? {
+        let availableSizes = product.sizes?.filter({ size in
+            return (size.available ?? false)
+        })
+
+        if let sizes = availableSizes {
+            return sizes.indices.contains(indexPath.row) ? sizes[indexPath.row] : nil
+        }
+        
+        return nil
     }
 }
 
