@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="productCell" id="gTV-IL-0wX" customClass="ProductViewCell" customModule="FashionStore" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="175" height="335"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="175" height="335"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3bC-y3-5UE">
+                        <rect key="frame" x="1" y="0.0" width="173" height="302"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Q3v-nA-7nS">
+                                <rect key="frame" x="0.0" y="0.0" width="173" height="302"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discount" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kuy-bw-6bd" customClass="EdgeInsetLabel" customModule="FashionStore" customModuleProvider="target">
+                                <rect key="frame" x="98.5" y="4" width="70.5" height="14.5"/>
+                                <color key="backgroundColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="leftTextInset">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="rightTextInset">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Kuy-bw-6bd" secondAttribute="trailing" constant="4" id="1pi-W2-EdS"/>
+                            <constraint firstAttribute="trailing" secondItem="Q3v-nA-7nS" secondAttribute="trailing" id="2LS-Lv-GEX"/>
+                            <constraint firstItem="Q3v-nA-7nS" firstAttribute="top" secondItem="3bC-y3-5UE" secondAttribute="top" id="E0a-hd-G4c"/>
+                            <constraint firstItem="Kuy-bw-6bd" firstAttribute="top" secondItem="3bC-y3-5UE" secondAttribute="top" constant="4" id="RYL-DY-WZc"/>
+                            <constraint firstAttribute="bottom" secondItem="Q3v-nA-7nS" secondAttribute="bottom" id="gQm-5f-tG3"/>
+                            <constraint firstItem="Q3v-nA-7nS" firstAttribute="leading" secondItem="3bC-y3-5UE" secondAttribute="leading" id="w7I-oY-WBf"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="45" translatesAutoresizingMaskIntoConstraints="NO" id="oGZ-gc-wrq">
+                        <rect key="frame" x="0.0" y="319" width="171" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" preferredMaxLayoutWidth="45" translatesAutoresizingMaskIntoConstraints="NO" id="PeE-x2-KaA">
+                        <rect key="frame" x="4" y="302" width="167" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="PeE-x2-KaA" firstAttribute="top" secondItem="3bC-y3-5UE" secondAttribute="bottom" id="8l8-ca-qa6"/>
+                <constraint firstItem="3bC-y3-5UE" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="1" id="Mf3-GM-Axx"/>
+                <constraint firstItem="3bC-y3-5UE" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Pd3-qE-PYJ"/>
+                <constraint firstItem="PeE-x2-KaA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="4" id="Pfd-g1-jXC"/>
+                <constraint firstItem="oGZ-gc-wrq" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="QMh-mJ-Bju"/>
+                <constraint firstItem="oGZ-gc-wrq" firstAttribute="top" secondItem="PeE-x2-KaA" secondAttribute="bottom" id="fch-hK-iRg"/>
+                <constraint firstAttribute="trailing" secondItem="3bC-y3-5UE" secondAttribute="trailing" constant="1" id="i44-5C-P7b"/>
+                <constraint firstAttribute="trailing" secondItem="oGZ-gc-wrq" secondAttribute="trailing" constant="4" id="jm8-Bz-Yjq"/>
+                <constraint firstAttribute="trailing" secondItem="PeE-x2-KaA" secondAttribute="trailing" constant="4" id="ogr-fD-30Q"/>
+                <constraint firstAttribute="bottom" secondItem="oGZ-gc-wrq" secondAttribute="bottom" id="uLg-DV-XZF"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="177" height="314"/>
+            <connections>
+                <outlet property="discountLabel" destination="Kuy-bw-6bd" id="O2n-LX-Wrp"/>
+                <outlet property="imageView" destination="Q3v-nA-7nS" id="jlH-6v-WDS"/>
+                <outlet property="nameLabel" destination="PeE-x2-KaA" id="lbA-h4-zgy"/>
+                <outlet property="priceLabel" destination="oGZ-gc-wrq" id="5bh-qb-lau"/>
+                <outlet property="productView" destination="3bC-y3-5UE" id="N8k-Nc-JYL"/>
+            </connections>
+            <point key="canvasLocation" x="88.5" y="183.5"/>
+        </collectionViewCell>
+    </objects>
+</document>
