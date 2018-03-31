@@ -41,7 +41,7 @@ class ProductViewCell: UICollectionViewCell {
         productView.layer.cornerRadius = 5.0
         productView.clipsToBounds = true
         productView.layer.borderColor = UIColor.lightGray.cgColor
-        productView.layer.borderWidth = 1.0
+        productView.layer.borderWidth = 0.5
         
         if let url = URL(string: cellModel.imageUrl) {
             imageView.kf.setImage(with: url,
