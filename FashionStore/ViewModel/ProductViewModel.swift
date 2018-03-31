@@ -50,13 +50,26 @@ class ProductViewModel {
     
     func getProductCell(at indexPath: IndexPath) -> ProductCellModel {
         let productModel = self.products[indexPath.row]
+        var attrPrice: NSAttributedString?
+        
+        if (productModel.onSale ?? false) {
+            attrPrice = attributedString(productModel)
+        }
         
         return ProductCellModel(imageUrl: productModel.image ?? "",
                                 discount: productModel.discountPercentage ?? "",
                                 name: productModel.name?.capitalized ?? "",
+                                price: productModel.regularPrice ?? "",
                                 onSale: productModel.onSale ?? false,
-                                regularPrice: productModel.regularPrice ?? "",
-                                actualPrice: productModel.actualPrice ?? "")
+                                attributedPrice: attrPrice)
+    }
+    
+    private func attributedString(_ product:Product) -> NSAttributedString {
+        let priceString = "\(product.regularPrice ?? "") \(product.actualPrice ?? "")"
+        let attrString = NSMutableAttributedString(string: priceString)
+        attrString.addAttribute(NSAttributedStringKey.strikethroughStyle, value: 1, range: NSMakeRange(0, (product.regularPrice ?? "").count))
+        
+        return attrString
     }
     
     func getProductDetail(at indexPath:IndexPath) -> ProductDetailModel {
@@ -89,9 +102,9 @@ struct ProductCellModel {
     let imageUrl: String
     let discount: String
     let name: String
+    let price: String
     let onSale: Bool
-    let regularPrice: String
-    let actualPrice: String
+    let attributedPrice: NSAttributedString?
 }
 
 struct ProductDetailModel {
