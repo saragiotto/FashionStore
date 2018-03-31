@@ -86,4 +86,13 @@ class ProductDetailViewController: UIViewController, UICollectionViewDelegate, U
         
         return UIEdgeInsetsMake(0, leftInset, 0, rightInset)
     }
+    
+    @IBAction func buyButtonClicked(_ sender: UIButton) {
+        let indexPath = sizeCollection.indexPathsForVisibleItems
+        let _ = indexPath.map({ index in
+            if let cell = sizeCollection.cellForItem(at: index) as? SizeViewCell {
+                cell.toggleBorderWarning()
+            }
+        })
+    }
 }
