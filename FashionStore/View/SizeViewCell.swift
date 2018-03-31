@@ -15,10 +15,16 @@ class SizeViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    
+    override var isSelected: Bool {
+        didSet {
+            self.backgroundColor = (oldValue) ? UIColor.black : UIColor.lightGray
+        }
+    }
 
     func configure(_ size:String) {
-        self.contentView.layer.cornerRadius = CGFloat(kSizeCornerRadius)
-        self.contentView.clipsToBounds = true
+        self.layer.cornerRadius = CGFloat(kSizeCornerRadius)
+        self.clipsToBounds = true
         
         sizeLabel.text = size
     }

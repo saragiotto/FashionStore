@@ -19,3 +19,5 @@ let kNavigationTitle = "AMARO"
 
 let kDiscountCornerRadius = 5.0
 let kSizeCornerRadius = 25.0
+let kSizeCellWidth = 50.0
+let kSizeCellSpacing = 10.0

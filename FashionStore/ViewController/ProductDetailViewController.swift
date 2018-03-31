@@ -9,14 +9,13 @@
 import UIKit
 import Kingfisher
 
-class ProductDetailViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class ProductDetailViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     var productModel: ProductDetailModel?
     var selectedIndexPath: IndexPath?
     var productVM: ProductViewModel?
 
     @IBOutlet weak var priceLabel: UILabel!
-    @IBOutlet weak var warningLabel: UILabel!
     @IBOutlet weak var productImage: UIImageView!
     @IBOutlet weak var colorLabel: UILabel!
     @IBOutlet weak var sizeCollection: UICollectionView!
@@ -29,11 +28,11 @@ class ProductDetailViewController: UIViewController, UICollectionViewDelegate, U
         
         title = productModel?.name
         colorLabel.text = productModel?.color
-        warningLabel.text = ""
         priceLabel.text = productModel?.price
         
         sizeCollection.delegate = self
         sizeCollection.dataSource = self
+
         let sizeCellNib = UINib.init(nibName: "SizeViewCell", bundle: nil)
         sizeCollection.register(sizeCellNib, forCellWithReuseIdentifier: kSizeCellIdentifier)
         
@@ -42,6 +41,8 @@ class ProductDetailViewController: UIViewController, UICollectionViewDelegate, U
                                      options:[.transition(.fade(0.3))])
         }
         
+        buyButton.layer.cornerRadius = CGFloat(kDiscountCornerRadius)
+        buyButton.clipsToBounds = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,5 +62,28 @@ class ProductDetailViewController: UIViewController, UICollectionViewDelegate, U
         }
         
         return UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)
+        cell?.backgroundColor = .black
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        
+        let count = productModel?.sizes.count ?? 0
+        let collectionViewWidth = collectionView.bounds.width
+        
+        let totalCellWidth = kSizeCellWidth * Double(count)
+        let totalSpacingWidth = kSizeCellSpacing * Double(count - 1)
+        
+        let leftInset = (collectionViewWidth - CGFloat(totalCellWidth + totalSpacingWidth)) / 2
+        let rightInset = leftInset
+        
+        return UIEdgeInsetsMake(0, leftInset, 0, rightInset)
     }
 }
