@@ -17,7 +17,17 @@ class CartViewModel {
         }) ?? 0
     }
     
-    init() {
+    public static let shared: CartViewModel = {
+        let instance = CartViewModel()
+        
+        return instance
+    }()
+    
+    private init() {
+        cart = Cart()
+    }
+    
+    func resetCart() {
         cart = Cart()
     }
     

@@ -31,14 +31,14 @@ class ProductViewCell: UICollectionViewCell {
         }
         
         if (cellModel.onSale) {
-            discountLabel.layer.cornerRadius = 5.0
+            discountLabel.layer.cornerRadius = CGFloat(kDiscountCornerRadius)
             discountLabel.clipsToBounds = true
             discountLabel.text = "\(cellModel.discount) off"
         } else {
             discountLabel.text = ""
         }
         
-        productView.layer.cornerRadius = 5.0
+        productView.layer.cornerRadius = CGFloat(kDiscountCornerRadius)
         productView.clipsToBounds = true
         productView.layer.borderColor = UIColor.lightGray.cgColor
         productView.layer.borderWidth = 0.5

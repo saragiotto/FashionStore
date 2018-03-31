@@ -9,9 +9,11 @@
 import UIKit
 import Kingfisher
 
-class ProductDetailViewController: UIViewController {
+class ProductDetailViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     var productModel: ProductDetailModel?
+    var selectedIndexPath: IndexPath?
+    var productVM: ProductViewModel?
 
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var warningLabel: UILabel!
@@ -27,6 +29,13 @@ class ProductDetailViewController: UIViewController {
         
         title = productModel?.name
         colorLabel.text = productModel?.color
+        warningLabel.text = ""
+        priceLabel.text = productModel?.price
+        
+        sizeCollection.delegate = self
+        sizeCollection.dataSource = self
+        let sizeCellNib = UINib.init(nibName: "SizeViewCell", bundle: nil)
+        sizeCollection.register(sizeCellNib, forCellWithReuseIdentifier: kSizeCellIdentifier)
         
         if let imageUrl = productModel?.imageUrl, let url = URL(string: imageUrl) {
             productImage.kf.setImage(with: url,
@@ -40,15 +49,17 @@ class ProductDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return productModel?.sizes.count ?? 0
     }
-    */
-
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kSizeCellIdentifier, for: indexPath) as? SizeViewCell {
+        
+            cell.configure(productModel?.sizes[indexPath.row] ?? "")
+            return cell
+        }
+        
+        return UICollectionViewCell()
+    }
 }

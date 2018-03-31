@@ -12,6 +12,10 @@ let kFashionUrl = "https://raw.githubusercontent.com/saragiotto/FashionStore/dev
 let kDefaultLocale = "pt_BR"
 
 let kProductCellIdentifier = "productCell"
+let kSizeCellIdentifier = "sizeCell"
 let kProductDetailSegue = "productDetailSegue"
 
 let kNavigationTitle = "AMARO"
+
+let kDiscountCornerRadius = 5.0
+let kSizeCornerRadius = 25.0

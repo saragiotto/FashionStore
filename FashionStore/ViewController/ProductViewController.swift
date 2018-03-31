@@ -82,6 +82,8 @@ class ProductViewController: UICollectionViewController {
             if let destinationVC = segue.destination as? ProductDetailViewController {
                 guard let indexPath = collectionView?.indexPathsForSelectedItems?.first else { return }
                 destinationVC.productModel = productVM.getProductDetail(at: indexPath)
+                destinationVC.selectedIndexPath = indexPath
+                destinationVC.productVM = productVM
             }
         }
     }
