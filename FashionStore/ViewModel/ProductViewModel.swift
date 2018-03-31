@@ -53,7 +53,7 @@ class ProductViewModel {
         
         return ProductCellModel(imageUrl: productModel.image ?? "",
                                 discount: productModel.discountPercentage ?? "",
-                                name: productModel.name ?? "",
+                                name: productModel.name?.capitalized ?? "",
                                 onSale: productModel.onSale ?? false,
                                 regularPrice: productModel.regularPrice ?? "",
                                 actualPrice: productModel.actualPrice ?? "")
@@ -78,8 +78,8 @@ class ProductViewModel {
         }
         
         return ProductDetailModel(imageUrl: productModel.image ?? "",
-                                  name: productModel.name ?? "",
-                                  color: productModel.color ?? "",
+                                  name: productModel.name?.capitalized ?? "",
+                                  color: productModel.color?.capitalized ?? "",
                                   price: price ?? "",
                                   sizes: sizes ?? [])
     }

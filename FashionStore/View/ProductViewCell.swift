@@ -23,7 +23,7 @@ class ProductViewCell: UICollectionViewCell {
     }
 
     func configure(with cellModel:ProductCellModel) {
-        nameLabel.text = cellModel.name.capitalized
+        nameLabel.text = cellModel.name
         priceLabel.text = cellModel.regularPrice
         
         if (cellModel.onSale) {

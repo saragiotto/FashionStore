@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ProductDetailViewController: UIViewController {
+    
+    var productModel: ProductDetailModel?
 
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var warningLabel: UILabel!
@@ -16,10 +19,20 @@ class ProductDetailViewController: UIViewController {
     @IBOutlet weak var colorLabel: UILabel!
     @IBOutlet weak var sizeCollection: UICollectionView!
     @IBOutlet weak var buyButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        title = productModel?.name
+        colorLabel.text = productModel?.color
+        
+        if let imageUrl = productModel?.imageUrl, let url = URL(string: imageUrl) {
+            productImage.kf.setImage(with: url,
+                                     options:[.transition(.fade(0.3))])
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {

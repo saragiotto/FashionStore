@@ -22,6 +22,7 @@ class ProductViewController: UICollectionViewController {
     private func configureView() {
         self.clearsSelectionOnViewWillAppear = true
         self.title = kNavigationTitle
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         let productCellNib = UINib.init(nibName: "ProductViewCell", bundle: nil)
         self.collectionView?.register(productCellNib, forCellWithReuseIdentifier: kProductCellIdentifier)
@@ -72,7 +73,17 @@ class ProductViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "addToCartSegue", sender: nil)
+        self.performSegue(withIdentifier: kProductDetailSegue, sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let identifier = segue.identifier, identifier == kProductDetailSegue {
+            if let destinationVC = segue.destination as? ProductDetailViewController {
+                guard let indexPath = collectionView?.indexPathsForSelectedItems?.first else { return }
+                destinationVC.productModel = productVM.getProductDetail(at: indexPath)
+            }
+        }
     }
 }
 

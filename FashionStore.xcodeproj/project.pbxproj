@@ -27,6 +27,7 @@
 		A73695AA206E869800B1ED50 /* ProductViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A73695A8206E869800B1ED50 /* ProductViewCell.xib */; };
 		A7770CA6206E9E0600F61FC0 /* EdgeInsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7770CA5206E9E0600F61FC0 /* EdgeInsetLabel.swift */; };
 		A7770CAA206F21A300F61FC0 /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7770CA9206F21A300F61FC0 /* ProductDetailViewController.swift */; };
+		A7770CAC206F2FCC00F61FC0 /* amaro.png in Resources */ = {isa = PBXBuildFile; fileRef = A7770CAB206F2FCC00F61FC0 /* amaro.png */; };
 		A7AFF758206DBCCE00DEFCBB /* CartViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AFF757206DBCCD00DEFCBB /* CartViewModelTests.swift */; };
 		A9A364998B32A1ECD292CDE3 /* Pods_FashionStoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2AFF3E59AB6DCBFA44D8728 /* Pods_FashionStoreTests.framework */; };
 /* End PBXBuildFile section */
@@ -66,6 +67,7 @@
 		A73695A8206E869800B1ED50 /* ProductViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductViewCell.xib; sourceTree = "<group>"; };
 		A7770CA5206E9E0600F61FC0 /* EdgeInsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsetLabel.swift; sourceTree = "<group>"; };
 		A7770CA9206F21A300F61FC0 /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
+		A7770CAB206F2FCC00F61FC0 /* amaro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = amaro.png; sourceTree = "<group>"; };
 		A7AFF757206DBCCD00DEFCBB /* CartViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewModelTests.swift; sourceTree = "<group>"; };
 		B6322DDB4B696BB54B214E14 /* Pods-FashionStoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FashionStoreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FashionStoreTests/Pods-FashionStoreTests.release.xcconfig"; sourceTree = "<group>"; };
 		BC0A95A51BEB3CDA6141CA18 /* Pods-FashionStoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FashionStoreTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FashionStoreTests/Pods-FashionStoreTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				982463EC206D654D002E3F40 /* AppDelegate.swift */,
 				982463F3206D654D002E3F40 /* Assets.xcassets */,
 				982463F8206D654D002E3F40 /* Info.plist */,
+				A7770CAB206F2FCC00F61FC0 /* amaro.png */,
 				982C7804206D6B42003228EF /* Products.json */,
 			);
 			path = Support;
@@ -325,6 +328,7 @@
 			files = (
 				A73695AA206E869800B1ED50 /* ProductViewCell.xib in Resources */,
 				982463F7206D654D002E3F40 /* LaunchScreen.storyboard in Resources */,
+				A7770CAC206F2FCC00F61FC0 /* amaro.png in Resources */,
 				982C7805206D6B42003228EF /* Products.json in Resources */,
 				982463F4206D654D002E3F40 /* Assets.xcassets in Resources */,
 				982463F2206D654D002E3F40 /* Main.storyboard in Resources */,
