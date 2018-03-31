@@ -14,6 +14,7 @@ class ProductDetailViewController: UIViewController, UICollectionViewDelegate, U
     var productModel: ProductDetailModel?
     var selectedIndexPath: IndexPath?
     var productVM: ProductViewModel?
+    private var selectedSize:IndexPath?
 
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var productImage: UIImageView!
@@ -25,7 +26,8 @@ class ProductDetailViewController: UIViewController, UICollectionViewDelegate, U
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
+
+        selectedIndexPath = nil
         title = productModel?.name
         colorLabel.text = productModel?.color
         priceLabel.text = productModel?.price
@@ -65,19 +67,11 @@ class ProductDetailViewController: UIViewController, UICollectionViewDelegate, U
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.selectedIndexPath = indexPath
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.backgroundColor = .black
         
-        let indexPath = sizeCollection.indexPathsForVisibleItems
-        let _ = indexPath.map({ index in
-            if let cell = sizeCollection.cellForItem(at: index) as? SizeViewCell {
-                cell.layer.borderWidth = 0.0
-            }
-        })
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
+        toogleSizeBorder(false)
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -95,10 +89,21 @@ class ProductDetailViewController: UIViewController, UICollectionViewDelegate, U
     }
     
     @IBAction func buyButtonClicked(_ sender: UIButton) {
+        if self.selectedIndexPath == nil {
+            self.toogleSizeBorder(true)
+            return
+        }
+    }
+    
+    private func toogleSizeBorder(_ show: Bool) {
         let indexPath = sizeCollection.indexPathsForVisibleItems
         let _ = indexPath.map({ index in
             if let cell = sizeCollection.cellForItem(at: index) as? SizeViewCell {
-                cell.toggleBorderWarning()
+                if show {
+                    cell.toggleBorderWarning()
+                } else {
+                    cell.layer.borderWidth = 0.0
+                }
             }
         })
     }
