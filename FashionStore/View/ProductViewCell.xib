@@ -20,10 +20,10 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3bC-y3-5UE">
-                        <rect key="frame" x="1" y="0.0" width="173" height="298.5"/>
+                        <rect key="frame" x="1" y="0.0" width="173" height="302"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Q3v-nA-7nS">
-                                <rect key="frame" x="0.0" y="0.0" width="173" height="298.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="173" height="302"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discount" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kuy-bw-6bd" customClass="EdgeInsetLabel" customModule="FashionStore" customModuleProvider="target">
                                 <rect key="frame" x="98.5" y="4" width="70.5" height="14.5"/>
@@ -57,9 +57,9 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" preferredMaxLayoutWidth="45" translatesAutoresizingMaskIntoConstraints="NO" id="PeE-x2-KaA">
-                        <rect key="frame" x="4" y="298.5" width="167" height="20.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" preferredMaxLayoutWidth="45" translatesAutoresizingMaskIntoConstraints="NO" id="PeE-x2-KaA">
+                        <rect key="frame" x="4" y="302" width="167" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>

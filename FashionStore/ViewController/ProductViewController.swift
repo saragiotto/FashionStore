@@ -21,6 +21,7 @@ class ProductViewController: UICollectionViewController {
     
     private func configureView() {
         self.clearsSelectionOnViewWillAppear = true
+        self.title = kNavigationTitle
         
         let productCellNib = UINib.init(nibName: "ProductViewCell", bundle: nil)
         self.collectionView?.register(productCellNib, forCellWithReuseIdentifier: kProductCellIdentifier)
@@ -68,6 +69,10 @@ class ProductViewController: UICollectionViewController {
         }
     
         return UICollectionViewCell()
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "addToCartSegue", sender: nil)
     }
 }
 

@@ -49,7 +49,6 @@ class ProductViewModel {
     }
     
     func getProductCell(at indexPath: IndexPath) -> ProductCellModel {
-        
         let productModel = self.products[indexPath.row]
         
         return ProductCellModel(imageUrl: productModel.image ?? "",
@@ -58,6 +57,31 @@ class ProductViewModel {
                                 onSale: productModel.onSale ?? false,
                                 regularPrice: productModel.regularPrice ?? "",
                                 actualPrice: productModel.actualPrice ?? "")
+    }
+    
+    func getProductDetail(at indexPath:IndexPath) -> ProductDetailModel {
+        let productModel = self.products[indexPath.row]
+        let availableSizes = productModel.sizes?.filter({ size in
+            return (size.available ?? false)
+        })
+        
+        var sizes: [String]?
+        
+        if let available = availableSizes {
+            sizes = available.map({$0.size ?? ""})
+        }
+        
+        var price = productModel.regularPrice
+        
+        if (productModel.onSale ?? false) {
+            price = productModel.actualPrice
+        }
+        
+        return ProductDetailModel(imageUrl: productModel.image ?? "",
+                                  name: productModel.name ?? "",
+                                  color: productModel.color ?? "",
+                                  price: price ?? "",
+                                  sizes: sizes ?? [])
     }
 }
 
@@ -69,3 +93,12 @@ struct ProductCellModel {
     let regularPrice: String
     let actualPrice: String
 }
+
+struct ProductDetailModel {
+    let imageUrl: String
+    let name: String
+    let color: String
+    let price: String
+    let sizes: [String]
+}
+
