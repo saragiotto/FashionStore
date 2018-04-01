@@ -118,7 +118,7 @@ extension ProductViewController: UICollectionViewDelegateFlowLayout {
         let screenWidth = UIScreen.main.bounds.width
         
         let itemWidth = screenWidth/2 - 1
-        let itemHeight = (itemWidth/3) * 5
+        let itemHeight = (itemWidth/3) * 4.5
         
         return CGSize(width: itemWidth, height: itemHeight)
     }
