@@ -30,7 +30,9 @@ class ProductDetailViewController: UIViewController, UICollectionViewDelegate, U
 
         sizeIndexPath = nil
         title = productModel?.name
-        colorLabel.text = productModel?.color
+        if let color = productModel?.color {
+            colorLabel.text = "\(kColorLabelName): \(color)"
+        }
         priceLabel.text = productModel?.price
         
         sizeCollection.delegate = self
@@ -61,6 +63,10 @@ class ProductDetailViewController: UIViewController, UICollectionViewDelegate, U
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kSizeCellIdentifier, for: indexPath) as? SizeViewCell {
         
             cell.configure(productModel?.sizes[indexPath.row] ?? "")
+            if (productModel?.sizes.count == 1) {
+                self.sizeIndexPath = indexPath
+                cell.backgroundColor = .black
+            }
             return cell
         }
         
@@ -79,14 +85,17 @@ class ProductDetailViewController: UIViewController, UICollectionViewDelegate, U
         
         let count = productModel?.sizes.count ?? 0
         let collectionViewWidth = collectionView.bounds.width
+        let collectionViewHeight = collectionView.bounds.height
         
         let totalCellWidth = kSizeCellWidth * Double(count)
         let totalSpacingWidth = kSizeCellSpacing * Double(count - 1)
         
         let leftInset = (collectionViewWidth - CGFloat(totalCellWidth + totalSpacingWidth)) / 2
         let rightInset = leftInset
+        let topInset = (collectionViewHeight - CGFloat(kSizeCellWidth)) / 2
+        let bottomInset = topInset
         
-        return UIEdgeInsetsMake(0, leftInset, 0, rightInset)
+        return UIEdgeInsetsMake(topInset, leftInset, bottomInset, rightInset)
     }
     
     @IBAction func buyButtonClicked(_ sender: UIButton) {
