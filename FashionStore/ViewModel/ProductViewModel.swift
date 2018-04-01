@@ -38,12 +38,12 @@ class ProductViewModel {
             case .success(let result):
                 if let products = result.products {
                     if (!onSale)  {
-                        self.products += products
+                        self.products = products
                     } else {
                         let onSaleList = products.filter({ product in
                             return (product.onSale ?? false)
                         })
-                        self.products += onSaleList
+                        self.products = onSaleList
                     }
                 }
                 self.page += 1

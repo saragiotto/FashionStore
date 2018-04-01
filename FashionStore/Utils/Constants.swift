@@ -15,6 +15,10 @@ let kProductCellIdentifier = "productCell"
 let kSizeCellIdentifier = "sizeCell"
 let kProductDetailSegue = "productDetailSegue"
 
+let kHeaderViewIdentifier = "headerView"
+let kFilterNotification = "productFilter"
+let kSegmentedIndex = "segmentedIndex"
+
 let kNavigationTitle = "AMARO"
 
 let kDiscountCornerRadius = 5.0

@@ -17,6 +17,9 @@ class ProductViewController: UICollectionViewController {
         
         configureView()
         configureViewModel()
+        
+        let name = NSNotification.Name(kFilterNotification)
+        NotificationCenter.default.addObserver(self, selector: #selector(segmentedDidChange), name: name, object: nil)
     }
     
     private func configureView() {
@@ -76,6 +79,17 @@ class ProductViewController: UICollectionViewController {
         self.performSegue(withIdentifier: kProductDetailSegue, sender: nil)
     }
     
+    override func collectionView(_ collectionView: UICollectionView,
+                                 viewForSupplementaryElementOfKind kind: String,
+                                 at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        if let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: kHeaderViewIdentifier, for: indexPath) as? ProductHeaderReusableView {
+            return headerView
+        }
+        
+        return UICollectionReusableView()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if let identifier = segue.identifier, identifier == kProductDetailSegue {
@@ -85,6 +99,15 @@ class ProductViewController: UICollectionViewController {
                 destinationVC.selectedIndexPath = indexPath
                 destinationVC.productVM = productVM
             }
+        }
+    }
+    
+    @objc func segmentedDidChange(_ notification: Notification) {
+        guard let object = notification.object as? [String:Int] else { return }
+        if object[kSegmentedIndex] == 0 {
+            productVM.fetchProducts()
+        } else {
+            productVM.fetchProducts(onSale: true)
         }
     }
 }
