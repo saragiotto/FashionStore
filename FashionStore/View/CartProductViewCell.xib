@@ -44,32 +44,67 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AXI-1q-drs">
-                        <rect key="frame" x="267.5" y="70.5" width="44.5" height="21"/>
+                        <rect key="frame" x="267.5" y="71" width="44.5" height="20.5"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dqV-Ig-3c1">
-                        <rect key="frame" x="86" y="74.5" width="35.5" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="299" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dqV-Ig-3c1">
+                        <rect key="frame" x="110" y="70.5" width="30" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="Z4E-e5-qKd"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BOx-Xg-LEv">
+                        <rect key="frame" x="86" y="71" width="16" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="16" id="drV-TB-VbZ"/>
+                            <constraint firstAttribute="height" constant="16" id="wib-Y5-sSh"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <state key="normal" title="−">
+                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <connections>
+                            <action selector="removeProductCount:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="cYd-cT-Nie"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EyA-T9-CqE">
+                        <rect key="frame" x="148" y="71" width="16" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="16" id="apk-1d-zIW"/>
+                            <constraint firstAttribute="height" constant="16" id="clL-Ig-Vnd"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <state key="normal" title="+">
+                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <connections>
+                            <action selector="addProductCount:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Uj4-ym-w9q"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="vvS-xM-dms" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="2CJ-Z7-9cW"/>
+                    <constraint firstItem="EyA-T9-CqE" firstAttribute="leading" secondItem="dqV-Ig-3c1" secondAttribute="trailing" constant="8" id="5bV-Su-qu4"/>
                     <constraint firstItem="K4G-4z-3Xy" firstAttribute="centerY" secondItem="kUe-wS-cKw" secondAttribute="centerY" id="85O-pX-8PA"/>
                     <constraint firstAttribute="bottom" secondItem="AXI-1q-drs" secondAttribute="bottom" constant="8" id="8eq-wJ-vXv"/>
                     <constraint firstItem="vvS-xM-dms" firstAttribute="leading" secondItem="xxH-Sp-bir" secondAttribute="trailing" constant="8" id="CgK-0T-UYd"/>
-                    <constraint firstItem="dqV-Ig-3c1" firstAttribute="leading" secondItem="xxH-Sp-bir" secondAttribute="trailing" constant="8" id="JEP-7n-YhZ"/>
+                    <constraint firstItem="EyA-T9-CqE" firstAttribute="centerY" secondItem="BOx-Xg-LEv" secondAttribute="centerY" id="Lwx-EH-p06"/>
                     <constraint firstAttribute="trailing" secondItem="K4G-4z-3Xy" secondAttribute="trailing" constant="8" id="VH6-PO-Gtb"/>
                     <constraint firstItem="kUe-wS-cKw" firstAttribute="leading" secondItem="xxH-Sp-bir" secondAttribute="trailing" constant="8" id="WC5-je-u2z"/>
                     <constraint firstItem="xxH-Sp-bir" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="bcy-9H-OLG"/>
                     <constraint firstItem="xxH-Sp-bir" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="gRQ-ks-sTF"/>
+                    <constraint firstItem="dqV-Ig-3c1" firstAttribute="centerY" secondItem="BOx-Xg-LEv" secondAttribute="centerY" id="hTf-gc-9ns"/>
                     <constraint firstItem="kUe-wS-cKw" firstAttribute="top" secondItem="vvS-xM-dms" secondAttribute="bottom" constant="12" id="i7d-Gh-CbU"/>
-                    <constraint firstAttribute="bottom" secondItem="dqV-Ig-3c1" secondAttribute="bottom" constant="8" id="jbo-4B-j0b"/>
+                    <constraint firstItem="BOx-Xg-LEv" firstAttribute="leading" secondItem="xxH-Sp-bir" secondAttribute="trailing" constant="8" id="j1v-Q3-RCV"/>
+                    <constraint firstAttribute="bottom" secondItem="dqV-Ig-3c1" secondAttribute="bottom" constant="12" id="jbo-4B-j0b"/>
                     <constraint firstAttribute="bottom" secondItem="xxH-Sp-bir" secondAttribute="bottom" constant="8" id="mxb-jE-RXc"/>
                     <constraint firstAttribute="trailing" secondItem="vvS-xM-dms" secondAttribute="trailing" constant="8" id="vgA-Yn-ioM"/>
+                    <constraint firstItem="dqV-Ig-3c1" firstAttribute="leading" secondItem="BOx-Xg-LEv" secondAttribute="trailing" constant="8" id="x1g-ea-Qwd"/>
                     <constraint firstAttribute="trailing" secondItem="AXI-1q-drs" secondAttribute="trailing" constant="8" id="z56-xV-Tzn"/>
                 </constraints>
             </tableViewCellContentView>
@@ -77,7 +112,9 @@
             <connections>
                 <outlet property="color" destination="kUe-wS-cKw" id="d6u-2w-Uec"/>
                 <outlet property="count" destination="dqV-Ig-3c1" id="yVj-BZ-8He"/>
+                <outlet property="minusButton" destination="BOx-Xg-LEv" id="PWD-D0-YL7"/>
                 <outlet property="name" destination="vvS-xM-dms" id="G4I-Qv-Xig"/>
+                <outlet property="plusButton" destination="EyA-T9-CqE" id="kxz-Lk-Vb5"/>
                 <outlet property="price" destination="AXI-1q-drs" id="PnG-2b-npQ"/>
                 <outlet property="productImage" destination="xxH-Sp-bir" id="jU6-GL-Idy"/>
                 <outlet property="size" destination="K4G-4z-3Xy" id="593-2v-Sfb"/>

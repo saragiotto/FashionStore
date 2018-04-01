@@ -9,7 +9,7 @@
 import UIKit
 
 class CartViewController: UIViewController {
-
+    
     @IBOutlet weak var cartTableView: UITableView!
     @IBOutlet weak var subTotalLabel: UILabel!
     @IBOutlet weak var shippingCostLabel: UILabel!
@@ -19,6 +19,14 @@ class CartViewController: UIViewController {
     private var shippingCost: Double? {
         didSet {
             self.shippingCostLabel.text = NumberFormatter().currencyWith(shippingCost ?? 0.0)
+        }
+    }
+    
+    private var totalCart: Double? {
+        didSet {
+            self.subTotalLabel.text = NumberFormatter().currencyWith(totalCart ?? 0.0)
+            calculateShippingCost()
+            self.totalCartLabel.text = NumberFormatter().currencyWith((totalCart ?? 0.0) + (shippingCost ?? 0.0))
         }
     }
     
@@ -37,15 +45,12 @@ class CartViewController: UIViewController {
         
         self.cartTableView.delegate = self
         self.cartTableView.dataSource = self
+        self.cartTableView.tableFooterView = UIView()
         
         processCart.layer.cornerRadius = CGFloat(kDiscountCornerRadius)
         processCart.clipsToBounds = true
         
-        calculateShippingCost()
-        
-        let totalCart = CartViewModel.shared.totalCart()
-        self.subTotalLabel.text = NumberFormatter().currencyWith(totalCart)
-        self.totalCartLabel.text = NumberFormatter().currencyWith(totalCart + (shippingCost ?? 0.0))
+        totalCart = CartViewModel.shared.totalCart()
     }
 
     private func calculateShippingCost() {
@@ -88,10 +93,28 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource {
             
             if let cellModel = CartViewModel.shared.getCartProduct(at: indexPath) {
                 cell.configure(cellModel)
+                cell.delegate = self
             }
             return cell
         }
         
         return UITableViewCell()
+    }
+}
+
+extension CartViewController: CartProductCellDelegate {
+    func changeProductCount(_ sender: UITableViewCell, operation: ProductCountOperation) {
+        if let indexPath = self.cartTableView.indexPath(for: sender) {
+            switch operation {
+            case .add:
+                CartViewModel.shared.addItem(at: indexPath)
+                break
+            case .remove:
+                CartViewModel.shared.removeItem(at: indexPath)
+                break
+            }
+            self.cartTableView.reloadData()
+            totalCart = CartViewModel.shared.totalCart()
+        }
     }
 }

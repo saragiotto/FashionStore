@@ -62,6 +62,11 @@ class CartViewModel {
         }
     }
     
+    func addItem(at indexPath: IndexPath) {
+        guard let productCart = self.getCartItem(at: indexPath) else { return }
+        productCart.count += 1
+    }
+    
     func removeItem(at indexPath:IndexPath) {
         guard let productCart = self.getCartItem(at: indexPath) else { return }
         
@@ -79,6 +84,8 @@ class CartViewModel {
         
         cart.products = cart.products?.filter({$0 != productCart})
     }
+    
+    
     
     private func cartHasItem(_ productCart: CartProduct) -> CartProduct? {
         return cart.products?.filter({$0 == productCart}).first
