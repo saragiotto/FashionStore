@@ -10,10 +10,23 @@ import UIKit
 
 class CartViewController: UIViewController {
 
+    @IBOutlet weak var cartTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        configureView()
+    }
+    
+    private func configureView() {
+        self.title = kCartViewTitle
+        
+        let cartProductCellNib = UINib.init(nibName: "CartProductViewCell", bundle: nil)
+        self.cartTableView.register(cartProductCellNib, forCellReuseIdentifier: kCartProductCellIdentifier)
+        
+        self.cartTableView.delegate = self
+        self.cartTableView.dataSource = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,7 +34,9 @@ class CartViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    @IBAction func closeCartView(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
+    }
     /*
     // MARK: - Navigation
 
@@ -32,4 +47,22 @@ class CartViewController: UIViewController {
     }
     */
 
+}
+
+extension CartViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return CartViewModel.shared.numberOfCells
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: kCartProductCellIdentifier) as? CartProductViewCell {
+            
+            if let cellModel = CartViewModel.shared.getCartProduct(at: indexPath) {
+                cell.configure(cellModel)
+            }
+            return cell
+        }
+        
+        return UITableViewCell()
+    }
 }

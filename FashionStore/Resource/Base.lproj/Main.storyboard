@@ -54,7 +54,13 @@
                             <outlet property="delegate" destination="hW2-F0-3Lt" id="9M3-GD-h6a"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="xbA-EA-cob"/>
+                    <navigationItem key="navigationItem" id="xbA-EA-cob">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="bagCart" id="kXq-FD-NaA">
+                            <connections>
+                                <segue destination="pYi-1F-pom" kind="presentation" id="UYQ-cv-yFH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="DfM-Ec-Kvr" kind="show" identifier="productDetailSegue" id="BEj-Ps-cCi"/>
                     </connections>
@@ -156,14 +162,122 @@
                     <view key="view" contentMode="scaleToFill" id="6o0-Lt-KOE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6fP-xe-UDN">
+                                <rect key="frame" x="0.0" y="64" width="320" height="358.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="7wF-ub-cbE">
+                                <rect key="frame" x="8" y="430.5" width="304" height="129.5"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="fVk-Yr-ocJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="304" height="20.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtotal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Mj-0H-uyZ">
+                                                <rect key="frame" x="0.0" y="0.0" width="64.5" height="20.5"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Odq-xS-vWF">
+                                                <rect key="frame" x="68.5" y="0.0" width="235.5" height="20.5"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="SCx-Pn-RqQ">
+                                        <rect key="frame" x="0.0" y="28.5" width="304" height="20.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bgc-75-dPM">
+                                                <rect key="frame" x="0.0" y="0.0" width="42" height="20.5"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qsY-mf-j7M">
+                                                <rect key="frame" x="46" y="0.0" width="258" height="20.5"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="RoV-nl-hbD">
+                                        <rect key="frame" x="0.0" y="57" width="304" height="20.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dL6-fD-lpf">
+                                                <rect key="frame" x="0.0" y="0.0" width="40.5" height="20.5"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sdn-ms-cp3">
+                                                <rect key="frame" x="44.5" y="0.0" width="259.5" height="20.5"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vKw-f1-zap">
+                                        <rect key="frame" x="0.0" y="85.5" width="304" height="44"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="4Vg-5X-gfg"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                        <state key="normal" title="Finalizar Compra">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="vKw-f1-zap" firstAttribute="leading" secondItem="7wF-ub-cbE" secondAttribute="leading" id="0bz-Ow-oev"/>
+                                    <constraint firstAttribute="trailing" secondItem="RoV-nl-hbD" secondAttribute="trailing" id="5G9-p6-ogW"/>
+                                    <constraint firstAttribute="trailing" secondItem="vKw-f1-zap" secondAttribute="trailing" id="FZ5-QT-ER1"/>
+                                    <constraint firstItem="fVk-Yr-ocJ" firstAttribute="leading" secondItem="7wF-ub-cbE" secondAttribute="leading" id="FZA-5e-VgS"/>
+                                    <constraint firstItem="SCx-Pn-RqQ" firstAttribute="leading" secondItem="7wF-ub-cbE" secondAttribute="leading" id="Rlz-GU-hle"/>
+                                    <constraint firstAttribute="trailing" secondItem="fVk-Yr-ocJ" secondAttribute="trailing" id="WtP-5A-qqf"/>
+                                    <constraint firstItem="RoV-nl-hbD" firstAttribute="leading" secondItem="7wF-ub-cbE" secondAttribute="leading" id="dcd-iX-9cp"/>
+                                    <constraint firstAttribute="trailing" secondItem="SCx-Pn-RqQ" secondAttribute="trailing" id="yOi-EV-qaq"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="6fP-xe-UDN" firstAttribute="top" secondItem="6XA-O5-ZJG" secondAttribute="top" id="HLB-lP-lf7"/>
+                            <constraint firstItem="6XA-O5-ZJG" firstAttribute="trailing" secondItem="7wF-ub-cbE" secondAttribute="trailing" constant="8" id="Kzq-gG-ngE"/>
+                            <constraint firstItem="7wF-ub-cbE" firstAttribute="top" secondItem="6fP-xe-UDN" secondAttribute="bottom" constant="8" id="O5R-pC-hFr"/>
+                            <constraint firstItem="6fP-xe-UDN" firstAttribute="leading" secondItem="6XA-O5-ZJG" secondAttribute="leading" id="QIt-xL-PCi"/>
+                            <constraint firstItem="6XA-O5-ZJG" firstAttribute="trailing" secondItem="6fP-xe-UDN" secondAttribute="trailing" id="W2S-OX-cfh"/>
+                            <constraint firstItem="6XA-O5-ZJG" firstAttribute="bottom" secondItem="7wF-ub-cbE" secondAttribute="bottom" constant="8" id="lta-JY-dOw"/>
+                            <constraint firstItem="7wF-ub-cbE" firstAttribute="leading" secondItem="6XA-O5-ZJG" secondAttribute="leading" constant="8" id="oJ6-jC-Q7U"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6XA-O5-ZJG"/>
                     </view>
-                    <navigationItem key="navigationItem" id="fBl-jS-2Li"/>
+                    <navigationItem key="navigationItem" id="fBl-jS-2Li">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="downArrow" id="lbR-GA-czL">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="closeCartView:" destination="yhY-n5-Nfq" id="t3m-67-c04"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="cartTableView" destination="6fP-xe-UDN" id="mV4-ao-f4V"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RwC-Kx-i7F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2083" y="937"/>
+            <point key="canvasLocation" x="2478.75" y="936.97183098591552"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="eAr-4m-FDt">
@@ -185,22 +299,26 @@
             <point key="canvasLocation" x="385" y="104"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="OU0-f1-AZo">
+        <scene sceneID="lH9-Xh-b7W">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oMv-kL-27x" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pYi-1F-pom" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="zQb-kg-5co">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ikb-JT-IRU">
                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="yhY-n5-Nfq" kind="relationship" relationship="rootViewController" id="seO-jQ-H2s"/>
+                        <segue destination="yhY-n5-Nfq" kind="relationship" relationship="rootViewController" id="Kfu-U1-RcN"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Igx-uw-1xC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DZ3-eX-A7f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1249" y="937"/>
+            <point key="canvasLocation" x="1594" y="937"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="bagCart" width="24" height="24"/>
+        <image name="downArrow" width="24" height="24"/>
+    </resources>
 </document>

@@ -17,6 +17,10 @@ class CartViewModel {
         }) ?? 0
     }
     
+    var numberOfCells: Int {
+        return cart.products?.count ?? 0
+    }
+    
     public static let shared: CartViewModel = {
         let instance = CartViewModel()
         
@@ -31,8 +35,19 @@ class CartViewModel {
         cart = Cart()
     }
     
-    func getCartItem(at indexPath:IndexPath) -> CartProduct? {
+    private func getCartItem(at indexPath:IndexPath) -> CartProduct? {
         return (cart.products?.indices.contains(indexPath.row) ?? false) ? cart.products?[indexPath.row] : nil
+    }
+    
+    func getCartProduct(at indexPath:IndexPath) -> CartProductCellModel? {
+        guard let cartProduct = cart.products?[indexPath.row] else { return nil }
+        
+        return CartProductCellModel(imageUrl: cartProduct.product.image ?? "",
+                                    name: cartProduct.product.name ?? "",
+                                    price: cartProduct.product.actualPrice ?? "",
+                                    size: cartProduct.size.size ?? "",
+                                    count: String(cartProduct.count),
+                                    color: cartProduct.product.color ?? "")
     }
     
     func addProduct(_ product: Product, of size: ProductSize) {
@@ -79,4 +94,13 @@ class CartViewModel {
         
         return formatter.string(for: amount) ?? ""
     }
+}
+
+struct CartProductCellModel {
+    let imageUrl: String
+    let name: String
+    let price: String
+    let size: String
+    let count: String
+    let color: String
 }

@@ -29,12 +29,6 @@ class ProductViewController: UICollectionViewController {
         
         let productCellNib = UINib.init(nibName: "ProductViewCell", bundle: nil)
         self.collectionView?.register(productCellNib, forCellWithReuseIdentifier: kProductCellIdentifier)
-        
-        if let bagCartImage = UIImage(named: "bagCart") {
-            let bagCartButton = UIBarButtonItem(image:  bagCartImage, style: .plain, target: self, action: nil)
-            
-            self.navigationItem.setRightBarButton(bagCartButton, animated: true)
-        }
     }
     
     private func configureViewModel() {
