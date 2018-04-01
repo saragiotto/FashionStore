@@ -42,9 +42,11 @@ class CartViewModel {
     func getCartProduct(at indexPath:IndexPath) -> CartProductCellModel? {
         guard let cartProduct = cart.products?[indexPath.row] else { return nil }
         
+        let itemPrice = (cartProduct.product.productPrice ?? 0.0) * Double(cartProduct.count)
+        
         return CartProductCellModel(imageUrl: cartProduct.product.image ?? "",
                                     name: cartProduct.product.name ?? "",
-                                    price: cartProduct.product.actualPrice ?? "",
+                                    price: NumberFormatter().currencyWith(itemPrice),
                                     size: cartProduct.size.size ?? "",
                                     count: String(cartProduct.count),
                                     color: cartProduct.product.color ?? "")
@@ -82,17 +84,12 @@ class CartViewModel {
         return cart.products?.filter({$0 == productCart}).first
     }
     
-    func totalCart() -> String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.locale = Locale(identifier: kDefaultLocale)
-        formatter.currencySymbol = String(format: "%@%@", formatter.currencySymbol, " ")
-        
+    func totalCart() -> Double {
         let amount = cart.products?.reduce(0.0, { amount, productCart in
             amount + ((productCart.product.productPrice ?? 0.0) * Double(productCart.count))
         })
         
-        return formatter.string(for: amount) ?? ""
+        return amount ?? 0.0
     }
 }
 

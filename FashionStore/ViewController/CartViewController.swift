@@ -11,6 +11,16 @@ import UIKit
 class CartViewController: UIViewController {
 
     @IBOutlet weak var cartTableView: UITableView!
+    @IBOutlet weak var subTotalLabel: UILabel!
+    @IBOutlet weak var shippingCostLabel: UILabel!
+    @IBOutlet weak var totalCartLabel: UILabel!
+    @IBOutlet weak var processCart: UIButton!
+    
+    private var shippingCost: Double? {
+        didSet {
+            self.shippingCostLabel.text = NumberFormatter().currencyWith(shippingCost ?? 0.0)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,8 +37,27 @@ class CartViewController: UIViewController {
         
         self.cartTableView.delegate = self
         self.cartTableView.dataSource = self
+        
+        processCart.layer.cornerRadius = CGFloat(kDiscountCornerRadius)
+        processCart.clipsToBounds = true
+        
+        calculateShippingCost()
+        
+        let totalCart = CartViewModel.shared.totalCart()
+        self.subTotalLabel.text = NumberFormatter().currencyWith(totalCart)
+        self.totalCartLabel.text = NumberFormatter().currencyWith(totalCart + (shippingCost ?? 0.0))
     }
 
+    private func calculateShippingCost() {
+        let numberOfItens = CartViewModel.shared.cartItens
+        let numberOfCells = CartViewModel.shared.numberOfCells
+        
+        let shippingCostForCell = Double(numberOfCells) * 2.2
+        let shippingCostForExtraItem = Double(numberOfItens - numberOfCells) * 1.0
+        
+        shippingCost = 10.0 + shippingCostForCell + shippingCostForExtraItem
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

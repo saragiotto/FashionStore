@@ -67,7 +67,7 @@ class CartViewModelTests: XCTestCase {
             
             self.viewModel?.addProduct(product, of: size)
             let totalCart = self.viewModel?.totalCart()
-            XCTAssert(totalCart == product.regularPrice ?? "")
+            XCTAssert((totalCart ?? 0.0) == (product.productPrice ?? 0.0))
             
             exp.fulfill()
         }
@@ -103,7 +103,7 @@ class CartViewModelTests: XCTestCase {
             self.viewModel?.addProduct(anotherProduct, of: anotherSize)
             
             let totalCart = self.viewModel?.totalCart()
-            XCTAssert(totalCart == "R$ 229,80")
+            XCTAssert(totalCart ?? 0.0 == 229.80)
             
             exp.fulfill()
         }
@@ -129,12 +129,12 @@ class CartViewModelTests: XCTestCase {
             self.viewModel?.addProduct(product, of: size)
             self.viewModel?.addProduct(product, of: size)
             
-            guard let finalItem = self.viewModel?.getCartItem(at: self.first) else {
+            guard let finalItem = self.viewModel?.getCartProduct(at: self.first) else {
                 XCTAssert(false)
                 return
             }
             
-            XCTAssert(finalItem.count == 2)
+            XCTAssert(finalItem.count == String(2))
             
             exp.fulfill()
         }
@@ -161,7 +161,7 @@ class CartViewModelTests: XCTestCase {
             self.viewModel?.addProduct(product, of: size)
 
             let totalCart = self.viewModel?.totalCart()
-            XCTAssert(totalCart == "R$ 399,80")
+            XCTAssert(totalCart ?? 0.0 == 399.80)
             
             exp.fulfill()
         }
@@ -198,12 +198,12 @@ class CartViewModelTests: XCTestCase {
             self.viewModel?.addProduct(anotherProduct, of: anotherSize)
             
             var totalCart = self.viewModel?.totalCart()
-            XCTAssert(totalCart == "R$ 229,80")
+            XCTAssert(totalCart ?? 0.0 == 229.80)
             
             self.viewModel?.removeAllItens(at: self.first)
             
             totalCart = self.viewModel?.totalCart()
-            XCTAssert(totalCart == "R$ 29,90")
+            XCTAssert(totalCart ?? 0.0 == 29.90)
             
             exp.fulfill()
         }
@@ -231,13 +231,13 @@ class CartViewModelTests: XCTestCase {
             self.viewModel?.addProduct(product, of: size)
             
             var totalCart = self.viewModel?.totalCart()
-            XCTAssert(totalCart == "R$ 599,70")
+            XCTAssert(totalCart ?? 0.0 == 599.70)
             
             self.viewModel?.removeItem(at: self.first)
             self.viewModel?.removeItem(at: self.first)
             
             totalCart = self.viewModel?.totalCart()
-            XCTAssert(totalCart == "R$ 199,90")
+            XCTAssert(totalCart ?? 0.0 == 199.90)
             
             exp.fulfill()
         }
@@ -265,7 +265,7 @@ class CartViewModelTests: XCTestCase {
             self.viewModel?.removeAllItens(at: self.first)
             
             let totalCart = self.viewModel?.totalCart()
-            XCTAssert(totalCart == "R$ 0,00")
+            XCTAssert(totalCart ?? 0.0 == 0.0)
             
             exp.fulfill()
         }
