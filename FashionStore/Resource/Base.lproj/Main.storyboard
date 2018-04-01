@@ -69,7 +69,7 @@
             </objects>
             <point key="canvasLocation" x="1248.75" y="103.52112676056338"/>
         </scene>
-        <!--Product Detail View Controller-->
+        <!--Title-->
         <scene sceneID="Uqe-eE-fFW">
             <objects>
                 <viewController id="DfM-Ec-Kvr" customClass="ProductDetailViewController" customModule="FashionStore" customModuleProvider="target" sceneMemberID="viewController">
@@ -151,6 +151,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Cbb-Og-rCJ"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="map-x0-2ok">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="bagCart" id="dX0-u0-Jm4">
+                            <connections>
+                                <segue destination="pYi-1F-pom" kind="presentation" identifier="cartSegue" id="YEK-F4-uA5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="buyButton" destination="Lzt-a8-U8Z" id="cPH-U3-LkN"/>
                         <outlet property="colorLabel" destination="qSZ-A0-dxF" id="RmT-nE-O0w"/>
@@ -327,4 +334,7 @@
         <image name="bagCart" width="24" height="24"/>
         <image name="downArrow" width="24" height="24"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="YEK-F4-uA5"/>
+    </inferredMetricsTieBreakers>
 </document>

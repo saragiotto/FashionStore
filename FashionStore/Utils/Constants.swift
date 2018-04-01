@@ -15,6 +15,7 @@ let kProductCellIdentifier = "productCell"
 let kSizeCellIdentifier = "sizeCell"
 let kCartProductCellIdentifier = "cartProductCell"
 let kProductDetailSegue = "productDetailSegue"
+let kCartSegue = "cartSegue"
 
 let kHeaderViewIdentifier = "headerView"
 let kFilterNotification = "productFilter"

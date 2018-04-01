@@ -113,7 +113,7 @@ class ProductDetailViewController: UIViewController, UICollectionViewDelegate, U
             }
             CartViewModel.shared.addProduct(product, of: size)
             
-            self.dismiss(animated: true, completion: nil)
+            self.performSegue(withIdentifier: kCartSegue, sender: nil)
         }
     }
     
