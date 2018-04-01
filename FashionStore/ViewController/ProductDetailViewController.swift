@@ -12,9 +12,10 @@ import Kingfisher
 class ProductDetailViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     var productModel: ProductDetailModel?
-    var selectedIndexPath: IndexPath?
     var productVM: ProductViewModel?
-    private var selectedSize:IndexPath?
+    
+    var productIndexPath: IndexPath?
+    private var sizeIndexPath:IndexPath?
 
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var productImage: UIImageView!
@@ -27,7 +28,7 @@ class ProductDetailViewController: UIViewController, UICollectionViewDelegate, U
 
         // Do any additional setup after loading the view.
 
-        selectedIndexPath = nil
+        sizeIndexPath = nil
         title = productModel?.name
         colorLabel.text = productModel?.color
         priceLabel.text = productModel?.price
@@ -67,7 +68,7 @@ class ProductDetailViewController: UIViewController, UICollectionViewDelegate, U
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.selectedIndexPath = indexPath
+        self.sizeIndexPath = indexPath
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.backgroundColor = .black
         
@@ -89,9 +90,21 @@ class ProductDetailViewController: UIViewController, UICollectionViewDelegate, U
     }
     
     @IBAction func buyButtonClicked(_ sender: UIButton) {
-        if self.selectedIndexPath == nil {
+        if self.sizeIndexPath == nil {
             self.toogleSizeBorder(true)
             return
+        }
+        
+        if let productIP = self.productIndexPath, let sizeIP = self.sizeIndexPath {
+            guard let product = productVM?.getProductModel(at: productIP) else {
+                return
+            }
+            guard let size = productVM?.getAvailableSize(product, at: sizeIP) else {
+                return
+            }
+            CartViewModel.shared.addProduct(product, of: size)
+            
+            self.dismiss(animated: true, completion: nil)
         }
     }
     

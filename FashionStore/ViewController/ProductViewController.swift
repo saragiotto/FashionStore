@@ -29,6 +29,12 @@ class ProductViewController: UICollectionViewController {
         
         let productCellNib = UINib.init(nibName: "ProductViewCell", bundle: nil)
         self.collectionView?.register(productCellNib, forCellWithReuseIdentifier: kProductCellIdentifier)
+        
+        if let bagCartImage = UIImage(named: "bagCart") {
+            let bagCartButton = UIBarButtonItem(image:  bagCartImage, style: .plain, target: self, action: nil)
+            
+            self.navigationItem.setRightBarButton(bagCartButton, animated: true)
+        }
     }
     
     private func configureViewModel() {
@@ -96,7 +102,7 @@ class ProductViewController: UICollectionViewController {
             if let destinationVC = segue.destination as? ProductDetailViewController {
                 guard let indexPath = collectionView?.indexPathsForSelectedItems?.first else { return }
                 destinationVC.productModel = productVM.getProductDetail(at: indexPath)
-                destinationVC.selectedIndexPath = indexPath
+                destinationVC.productIndexPath = indexPath
                 destinationVC.productVM = productVM
             }
         }
