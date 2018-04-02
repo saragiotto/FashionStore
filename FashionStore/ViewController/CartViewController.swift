@@ -60,7 +60,7 @@ class CartViewController: UIViewController {
         totalCart = CartViewModel.shared.totalCart()
     }
 
-    /* This is just for somulation proposals
+    /* This is just for simulation proposals
      
      Every new product cost R$ 2,20 for shipping
      Every product additional item cost R$ 1,00 for shipping
