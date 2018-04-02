@@ -9,7 +9,7 @@
 import Foundation
 
 class CartViewModel {
-    var cart: Cart
+    private var cart: Cart
     
     var cartItens: Int {
         return cart.products?.reduce(0, { amount, productCart in
@@ -17,46 +17,94 @@ class CartViewModel {
         }) ?? 0
     }
     
-    init() {
+    var numberOfCells: Int {
+        return cart.products?.count ?? 0
+    }
+    
+    public static let shared: CartViewModel = {
+        let instance = CartViewModel()
+        
+        return instance
+    }()
+    
+    private init() {
         cart = Cart()
     }
     
-    func addItem(_ productCart: CartProduct) {
-        if let prod = cartHasItem(productCart) {
+    func resetCart() {
+        cart = Cart()
+    }
+    
+    private func getCartItem(at indexPath:IndexPath) -> CartProduct? {
+        return (cart.products?.indices.contains(indexPath.row) ?? false) ? cart.products?[indexPath.row] : nil
+    }
+    
+    func getCartProduct(at indexPath:IndexPath) -> CartProductCellModel? {
+        guard let cartProduct = cart.products?[indexPath.row] else { return nil }
+        
+        let itemPrice = (cartProduct.product.productPrice ?? 0.0) * Double(cartProduct.count)
+        
+        return CartProductCellModel(imageUrl: cartProduct.product.image ?? "",
+                                    name: cartProduct.product.name ?? "",
+                                    price: NumberFormatter().currencyWith(itemPrice),
+                                    size: cartProduct.size.size ?? "",
+                                    count: String(cartProduct.count),
+                                    color: cartProduct.product.color ?? "")
+    }
+    
+    func addProduct(_ product: Product, of size: ProductSize) {
+        let cartItem = CartProduct(product, size: size, color: product.color ?? "")
+        
+        if let prod = cartHasItem(cartItem) {
             prod.count += 1
         } else {
-            cart.products?.append(productCart)
+            cart.products?.append(cartItem)
         }
     }
     
-    func removeItem(_ productCart: CartProduct) {
+    func addItem(at indexPath: IndexPath) {
+        guard let productCart = self.getCartItem(at: indexPath) else { return }
+        productCart.count += 1
+    }
+    
+    func removeItem(at indexPath:IndexPath) {
+        guard let productCart = self.getCartItem(at: indexPath) else { return }
+        
         if let prod = cartHasItem(productCart) {
             if prod.count > 1 {
                 prod.count -= 1
             } else {
-                removeAllItens(productCart)
+                removeAllItens(at: indexPath)
             }
         }
     }
     
-    func totalCart() -> String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.locale = Locale(identifier: kDefaultLocale)
-        formatter.currencySymbol = String(format: "%@%@", formatter.currencySymbol, " ")
+    func removeAllItens(at indexPath:IndexPath) {
+        guard let productCart = self.getCartItem(at: indexPath) else { return }
         
-        let amount = cart.products?.reduce(0.0, { amount, productCart in
-            amount + ((productCart.product.productPrice ?? 0.0) * Double(productCart.count))
-        })
-        
-        return formatter.string(for: amount) ?? ""
-    }
-    
-    func removeAllItens(_ productCart: CartProduct) {
         cart.products = cart.products?.filter({$0 != productCart})
     }
+    
+    
     
     private func cartHasItem(_ productCart: CartProduct) -> CartProduct? {
         return cart.products?.filter({$0 == productCart}).first
     }
+    
+    func totalCart() -> Double {
+        let amount = cart.products?.reduce(0.0, { amount, productCart in
+            amount + ((productCart.product.productPrice ?? 0.0) * Double(productCart.count))
+        })
+        
+        return amount ?? 0.0
+    }
+}
+
+struct CartProductCellModel {
+    let imageUrl: String
+    let name: String
+    let price: String
+    let size: String
+    let count: String
+    let color: String
 }

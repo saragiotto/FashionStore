@@ -24,38 +24,40 @@ class ProductViewCell: UICollectionViewCell {
 
     func configure(with cellModel:ProductCellModel) {
         nameLabel.text = cellModel.name
-        priceLabel.text = cellModel.regularPrice
+        priceLabel.text = cellModel.price
+        
+        if let attrPrice = cellModel.attributedPrice {
+            priceLabel.attributedText = attrPrice
+        } 
         
         if (cellModel.onSale) {
-            discountLabel.layer.cornerRadius = 5.0
+            discountLabel.layer.cornerRadius = CGFloat(kDiscountCornerRadius)
             discountLabel.clipsToBounds = true
             discountLabel.text = "\(cellModel.discount) off"
-            
-            priceLabel.attributedText = attributedString(cellModel)
         } else {
             discountLabel.text = ""
         }
         
-        productView.layer.cornerRadius = 5.0
+        productView.layer.cornerRadius = CGFloat(kDiscountCornerRadius)
         productView.clipsToBounds = true
         productView.layer.borderColor = UIColor.lightGray.cgColor
-        productView.layer.borderWidth = 1.0
+        productView.layer.borderWidth = 0.5
         
         if let url = URL(string: cellModel.imageUrl) {
+            imageView.contentMode = .scaleAspectFill
             imageView.kf.setImage(with: url,
                                   options:[.transition(.fade(0.3))])
+        } else {
+            imageView.contentMode = .center
+            imageView.image = UIImage(named: kProductNoImageName)
         }
-    }
-    
-    private func attributedString(_ cellModel:ProductCellModel) -> NSAttributedString {
-        let attrString = NSMutableAttributedString(string: "\(cellModel.regularPrice) \(cellModel.actualPrice)")
-        attrString.addAttribute(NSAttributedStringKey.strikethroughStyle, value: 1, range: NSMakeRange(0, cellModel.regularPrice.count))
-        
-        return attrString
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        nameLabel.text = nil
+        priceLabel.text = nil
+        priceLabel.attributedText = nil
         self.imageView.kf.cancelDownloadTask()
         self.imageView.layer.removeAllAnimations()
         self.imageView.image = nil

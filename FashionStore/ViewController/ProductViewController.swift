@@ -11,12 +11,16 @@ import UIKit
 class ProductViewController: UICollectionViewController {
     
     var productVM = ProductViewModel()
+    private var onSaleFilter = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureView()
         configureViewModel()
+        
+        let name = NSNotification.Name(kFilterNotification)
+        NotificationCenter.default.addObserver(self, selector: #selector(segmentedDidChange), name: name, object: nil)
     }
     
     private func configureView() {
@@ -28,11 +32,11 @@ class ProductViewController: UICollectionViewController {
         self.collectionView?.register(productCellNib, forCellWithReuseIdentifier: kProductCellIdentifier)
     }
     
-    private func configureViewModel() {
+    private func configureViewModel(onSale:Bool = false) {
         productVM.didFinishFetchClosure = {
             self.collectionView?.reloadData()
         }
-        productVM.fetchProducts()
+        productVM.fetchProducts(onSale: onSale)
     }
 
     override func didReceiveMemoryWarning() {
@@ -76,14 +80,41 @@ class ProductViewController: UICollectionViewController {
         self.performSegue(withIdentifier: kProductDetailSegue, sender: nil)
     }
     
+    override func collectionView(_ collectionView: UICollectionView,
+                                 viewForSupplementaryElementOfKind kind: String,
+                                 at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        if let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: kHeaderViewIdentifier, for: indexPath) as? ProductHeaderReusableView {
+            return headerView
+        }
+        
+        return UICollectionReusableView()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if let identifier = segue.identifier, identifier == kProductDetailSegue {
             if let destinationVC = segue.destination as? ProductDetailViewController {
                 guard let indexPath = collectionView?.indexPathsForSelectedItems?.first else { return }
                 destinationVC.productModel = productVM.getProductDetail(at: indexPath)
+                destinationVC.productIndexPath = indexPath
+                destinationVC.productVM = productVM
             }
         }
+    }
+    
+    @objc func segmentedDidChange(_ notification: Notification) {
+        
+        guard let object = notification.object as? [String:Int] else { return }
+        
+        if object[kSegmentedIndex] == 0 {
+            self.onSaleFilter = false
+        } else {
+            self.onSaleFilter = true
+        }
+        
+        productVM = ProductViewModel()
+        self.configureViewModel(onSale: self.onSaleFilter)        
     }
 }
 
@@ -93,7 +124,7 @@ extension ProductViewController: UICollectionViewDelegateFlowLayout {
         let screenWidth = UIScreen.main.bounds.width
         
         let itemWidth = screenWidth/2 - 1
-        let itemHeight = (itemWidth/3) * 5
+        let itemHeight = (itemWidth/3) * 4.5
         
         return CGSize(width: itemWidth, height: itemHeight)
     }

@@ -11,17 +11,17 @@ import Alamofire
 import AlamofireObjectMapper
 
 class ProductViewModel {
-    var products: [Product] {
-        didSet {
-            self.didFinishFetchClosure?()
-        }
-    }
-    
     var numberOfCells: Int {
         return products.count
     }
     
     var didFinishFetchClosure: (() -> ())?
+    
+    private var products: [Product] {
+        didSet {
+            self.didFinishFetchClosure?()
+        }
+    }
     
     private var page: Int
     
@@ -30,14 +30,21 @@ class ProductViewModel {
         self.page = 1
     }
     
-    func fetchProducts() {
+    func fetchProducts(onSale: Bool = false) {
         
         Alamofire.request(kFashionUrl).responseObject { (response: DataResponse<ProductResponse>) in
             
             switch response.result {
             case .success(let result):
                 if let products = result.products {
-                    self.products += products
+                    if (!onSale)  {
+                        self.products = products
+                    } else {
+                        let onSaleList = products.filter({ product in
+                            return (product.onSale ?? false)
+                        })
+                        self.products = onSaleList
+                    }
                 }
                 self.page += 1
                 break
@@ -50,13 +57,26 @@ class ProductViewModel {
     
     func getProductCell(at indexPath: IndexPath) -> ProductCellModel {
         let productModel = self.products[indexPath.row]
+        var attrPrice: NSAttributedString?
+        
+        if (productModel.onSale ?? false) {
+            attrPrice = attributedString(productModel)
+        }
         
         return ProductCellModel(imageUrl: productModel.image ?? "",
                                 discount: productModel.discountPercentage ?? "",
                                 name: productModel.name?.capitalized ?? "",
+                                price: productModel.regularPrice ?? "",
                                 onSale: productModel.onSale ?? false,
-                                regularPrice: productModel.regularPrice ?? "",
-                                actualPrice: productModel.actualPrice ?? "")
+                                attributedPrice: attrPrice)
+    }
+    
+    private func attributedString(_ product:Product) -> NSAttributedString {
+        let priceString = "\(product.regularPrice ?? "") \(product.actualPrice ?? "")"
+        let attrString = NSMutableAttributedString(string: priceString)
+        attrString.addAttribute(NSAttributedStringKey.strikethroughStyle, value: 1, range: NSMakeRange(0, (product.regularPrice ?? "").count))
+        
+        return attrString
     }
     
     func getProductDetail(at indexPath:IndexPath) -> ProductDetailModel {
@@ -77,11 +97,36 @@ class ProductViewModel {
             price = productModel.actualPrice
         }
         
+        var attrPrice: NSAttributedString?
+        
+        if (productModel.onSale ?? false) {
+            attrPrice = attributedString(productModel)
+        }
+        
         return ProductDetailModel(imageUrl: productModel.image ?? "",
                                   name: productModel.name?.capitalized ?? "",
                                   color: productModel.color?.capitalized ?? "",
                                   price: price ?? "",
-                                  sizes: sizes ?? [])
+                                  sizes: sizes ?? [],
+                                  discount: productModel.discountPercentage ?? "",
+                                  onSale: productModel.onSale ?? false,
+                                  attributedPrice: attrPrice)
+    }
+    
+    func getProductModel(at indexPath:IndexPath) -> Product? {
+        return self.products.indices.contains(indexPath.row) ? self.products[indexPath.row] : nil
+    }
+    
+    func getAvailableSize(_ product:Product, at indexPath:IndexPath) -> ProductSize? {
+        let availableSizes = product.sizes?.filter({ size in
+            return (size.available ?? false)
+        })
+
+        if let sizes = availableSizes {
+            return sizes.indices.contains(indexPath.row) ? sizes[indexPath.row] : nil
+        }
+        
+        return nil
     }
 }
 
@@ -89,9 +134,9 @@ struct ProductCellModel {
     let imageUrl: String
     let discount: String
     let name: String
+    let price: String
     let onSale: Bool
-    let regularPrice: String
-    let actualPrice: String
+    let attributedPrice: NSAttributedString?
 }
 
 struct ProductDetailModel {
@@ -100,5 +145,8 @@ struct ProductDetailModel {
     let color: String
     let price: String
     let sizes: [String]
+    let discount: String
+    let onSale: Bool
+    let attributedPrice: NSAttributedString?
 }
 
