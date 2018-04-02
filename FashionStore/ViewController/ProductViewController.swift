@@ -11,6 +11,7 @@ import UIKit
 class ProductViewController: UICollectionViewController {
     
     var productVM = ProductViewModel()
+    private var onSaleFilter = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,11 +32,11 @@ class ProductViewController: UICollectionViewController {
         self.collectionView?.register(productCellNib, forCellWithReuseIdentifier: kProductCellIdentifier)
     }
     
-    private func configureViewModel() {
+    private func configureViewModel(onSale:Bool = false) {
         productVM.didFinishFetchClosure = {
             self.collectionView?.reloadData()
         }
-        productVM.fetchProducts()
+        productVM.fetchProducts(onSale: onSale)
     }
 
     override func didReceiveMemoryWarning() {
@@ -103,12 +104,17 @@ class ProductViewController: UICollectionViewController {
     }
     
     @objc func segmentedDidChange(_ notification: Notification) {
+        
         guard let object = notification.object as? [String:Int] else { return }
+        
         if object[kSegmentedIndex] == 0 {
-            productVM.fetchProducts()
+            self.onSaleFilter = false
         } else {
-            productVM.fetchProducts(onSale: true)
+            self.onSaleFilter = true
         }
+        
+        productVM = ProductViewModel()
+        self.configureViewModel(onSale: self.onSaleFilter)        
     }
 }
 

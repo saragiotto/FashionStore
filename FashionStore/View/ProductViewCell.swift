@@ -28,7 +28,7 @@ class ProductViewCell: UICollectionViewCell {
         
         if let attrPrice = cellModel.attributedPrice {
             priceLabel.attributedText = attrPrice
-        }
+        } 
         
         if (cellModel.onSale) {
             discountLabel.layer.cornerRadius = CGFloat(kDiscountCornerRadius)
@@ -55,6 +55,9 @@ class ProductViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        nameLabel.text = nil
+        priceLabel.text = nil
+        priceLabel.attributedText = nil
         self.imageView.kf.cancelDownloadTask()
         self.imageView.layer.removeAllAnimations()
         self.imageView.image = nil
