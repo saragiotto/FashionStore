@@ -1,0 +1,20 @@
+# references:
+# * http://www.objc.io/issue-6/travis-ci.html
+# * https://github.com/supermarin/xcpretty#usage
+
+osx_image: xcode9.2
+language: swift
+# cache: cocoapods
+# podfile: Example/Podfile
+before_install: 
+  - rvm use $RVM_RUBY_VERSION
+  - gem install cocoapods # Since Travis is not always on latest version
+  - pod repo update
+  - pod install --verbose
+install: 
+  - gem install slather --no-rdoc --no-ri --no-document --quiet
+after_success: 
+  - slather
+  - bash <(curl -s https://codecov.io/bash) -f ./xml_report/cobertura.xml -X coveragepy -X gcov -X xcode -t 914802df-2d31-4f56-95e3-99ee2f287a91
+script:
+- set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace FashionStore.xcworkspace -scheme FashionStore -sdk iphonesimulator11.2 -destination 'platform=iOS Simulator,name=iPhone 8,OS=11.2' ONLY_ACTIVE_ARCH=YES VALID_ARCHS=x86_64 | xcpretty
