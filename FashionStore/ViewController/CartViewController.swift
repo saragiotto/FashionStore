@@ -70,9 +70,9 @@ class CartViewController: UIViewController {
     private func calculateShippingCost() {
         let numberOfItens = CartViewModel.shared.cartItens
         let numberOfCells = CartViewModel.shared.numberOfCells
-        let shippingCostForCell = Double(numberOfCells) * 2.2
-        let shippingCostForExtraItem = Double(numberOfItens - numberOfCells) * 1.0
-        let startCost = (CartViewModel.shared.numberOfCells == 0) ? 0.0 : 10.0
+        let shippingCostForCell = Double(numberOfCells) * kShippingCostForProduct
+        let shippingCostForExtraItem = Double(numberOfItens - numberOfCells) * kShippingCostForExtraItem
+        let startCost = (CartViewModel.shared.numberOfCells == 0) ? 0.0 : kShippingStartCost
         
         shippingCost = startCost + shippingCostForCell + shippingCostForExtraItem
     }
@@ -86,12 +86,34 @@ class CartViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func processUsersCart(_ sender: Any) {
+        
+        if CartViewModel.shared.numberOfCells == 0 {
+            return
+        }
+        
+        let alertController = UIAlertController(title: kActionTitle, message: kActionDescription, preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: kActionOk, style: .default) { (action: UIAlertAction) in
+            CartViewModel.shared.resetCart()
+            self.updateCart()
+        }
+        
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
     private func emptyCartMessage() {
         let hidden = (CartViewModel.shared.numberOfCells != 0)
         
         UIView.animate(withDuration: 0.5, animations: {
             self.emptyCartView.isHidden = hidden
         })
+    }
+    
+    private func updateCart() {
+        self.cartTableView.reloadData()
+        totalCart = CartViewModel.shared.totalCart()
     }
 }
 
@@ -125,9 +147,8 @@ extension CartViewController: CartProductCellDelegate {
                 CartViewModel.shared.removeItem(at: indexPath)
                 break
             }
-            self.cartTableView.reloadData()
             self.emptyCartMessage()
-            totalCart = CartViewModel.shared.totalCart()
+            self.updateCart()
         }
     }
 }

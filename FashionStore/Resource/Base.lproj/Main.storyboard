@@ -294,6 +294,9 @@
                                         <state key="normal" title="Finalizar Compra">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="processUsersCart:" destination="yhY-n5-Nfq" eventType="touchUpInside" id="fuT-wO-7gG"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>

@@ -33,6 +33,14 @@ let kSizeCornerRadius = 25.0
 let kSizeCellWidth = 50.0
 let kSizeCellSpacing = 10.0
 
+let kActionTitle = "AMARO"
+let kActionDescription = "Agradecemos a preferencia. Em breve suas compras chegarão ao destino. Até a próxima =D"
+let kActionOk = "Ok"
+
+let kShippingStartCost = 10.0
+let kShippingCostForProduct = 2.2
+let kShippingCostForExtraItem = 1.0
+
 enum ProductCountOperation {
     case add, remove
 }
