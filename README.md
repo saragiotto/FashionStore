@@ -11,14 +11,26 @@ Design pattern used Model-View-ViewModel (MVVM)
 
 Model files
 
-*Product.swift
-*ProductSize.swift
+* Product.swift
+* ProductSize.swift
 
 ViewModel files
 
-*ProductViewModel.swift
+* ProductViewModel.swift
 
 ViewController files
 
-*ProductViewController.swift
-*PeoductDetailViewController.swift
+* ProductViewController.swift
+* ProductDetailViewController.swift
+
+## Lista de Produtos
+
+![Imagem](https://raw.githubusercontent.com/saragiotto/FashionStore/master/ScreenShots/IMG_6675.PNG)
+
+## Detalhe do Produto
+
+![Imagem](https://raw.githubusercontent.com/saragiotto/FashionStore/master/ScreenShots/IMG_6676.PNG)
+
+## Sacola de Compras
+
+![Imagem](https://raw.githubusercontent.com/saragiotto/FashionStore/master/ScreenShots/IMG_6677.PNG)
