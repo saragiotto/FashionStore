@@ -143,6 +143,7 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource {
         if (editingStyle == .delete) {
             CartViewModel.shared.removeAllItens(at: indexPath)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            self.emptyCartMessage()
             self.updateCart()
         }
     }
