@@ -1,0 +1,10 @@
+coverage_service: cobertura_xml
+output_directory: xml_report
+xcodeproj: FashionStore.xcodeproj
+scheme: FashionStore
+workspace: FashionStore.xcworkspace
+source_directory: FashionStore
+binary_basename: FashionStore
+ignore:
+  - '../*'
+  - 'Pods/*'
