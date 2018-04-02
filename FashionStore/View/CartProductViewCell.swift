@@ -56,6 +56,7 @@ class CartProductViewCell: UITableViewCell {
         plusButton.clipsToBounds = true
         
         if let url = URL(string: cellModel.imageUrl) {
+            productImage.contentMode = .scaleAspectFill
             productImage.kf.setImage(with: url,
                                      options:[.transition(.fade(0.3))])
         }

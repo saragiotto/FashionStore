@@ -44,8 +44,12 @@ class ProductViewCell: UICollectionViewCell {
         productView.layer.borderWidth = 0.5
         
         if let url = URL(string: cellModel.imageUrl) {
+            imageView.contentMode = .scaleAspectFill
             imageView.kf.setImage(with: url,
                                   options:[.transition(.fade(0.3))])
+        } else {
+            imageView.contentMode = .center
+            imageView.image = UIImage(named: kProductNoImageName)
         }
     }
     

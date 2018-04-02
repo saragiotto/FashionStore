@@ -42,6 +42,7 @@ class ProductDetailViewController: UIViewController, UICollectionViewDelegate, U
         sizeCollection.register(sizeCellNib, forCellWithReuseIdentifier: kSizeCellIdentifier)
         
         if let imageUrl = productModel?.imageUrl, let url = URL(string: imageUrl) {
+            productImage.contentMode = .scaleAspectFill
             productImage.kf.setImage(with: url,
                                      options:[.transition(.fade(0.3))])
         }
