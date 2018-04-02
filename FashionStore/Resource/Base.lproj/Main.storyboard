@@ -130,6 +130,21 @@
                                     <action selector="buyButtonClicked:" destination="DfM-Ec-Kvr" eventType="touchUpInside" id="eHy-T8-Jfe"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7xW-S9-ZW4" customClass="EdgeInsetLabel" customModule="FashionStore" customModuleProvider="target">
+                                <rect key="frame" x="304" y="72" width="102" height="24"/>
+                                <color key="backgroundColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="leftTextInset">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="rightTextInset">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -137,9 +152,11 @@
                             <constraint firstItem="Cbb-Og-rCJ" firstAttribute="trailing" secondItem="VdE-da-aST" secondAttribute="trailing" constant="8" id="5mk-vi-Qpm"/>
                             <constraint firstItem="qSZ-A0-dxF" firstAttribute="top" secondItem="Jh5-io-tky" secondAttribute="bottom" constant="4" id="9Aq-hZ-yiw"/>
                             <constraint firstItem="Cbb-Og-rCJ" firstAttribute="trailing" secondItem="Lzt-a8-U8Z" secondAttribute="trailing" constant="8" id="Du3-od-D2P"/>
+                            <constraint firstItem="7xW-S9-ZW4" firstAttribute="top" secondItem="Cbb-Og-rCJ" secondAttribute="top" constant="8" id="H8g-9x-pA7"/>
                             <constraint firstItem="VdE-da-aST" firstAttribute="top" secondItem="E5t-hW-jYQ" secondAttribute="bottom" constant="8" id="Ne9-mK-iMG"/>
                             <constraint firstItem="Lzt-a8-U8Z" firstAttribute="top" secondItem="VdE-da-aST" secondAttribute="bottom" constant="8" id="PBw-Sq-e5O"/>
                             <constraint firstItem="Jh5-io-tky" firstAttribute="top" secondItem="Cbb-Og-rCJ" secondAttribute="top" id="PsZ-Ch-yc4"/>
+                            <constraint firstItem="Cbb-Og-rCJ" firstAttribute="trailing" secondItem="7xW-S9-ZW4" secondAttribute="trailing" constant="8" id="SMz-MW-HJq"/>
                             <constraint firstItem="qSZ-A0-dxF" firstAttribute="leading" secondItem="Cbb-Og-rCJ" secondAttribute="leading" constant="8" id="U8f-BJ-16n"/>
                             <constraint firstItem="E5t-hW-jYQ" firstAttribute="top" secondItem="Jh5-io-tky" secondAttribute="bottom" constant="4" id="UTf-KP-i7y"/>
                             <constraint firstItem="VdE-da-aST" firstAttribute="leading" secondItem="Cbb-Og-rCJ" secondAttribute="leading" constant="8" id="g9u-z6-UFJ"/>
@@ -161,6 +178,7 @@
                     <connections>
                         <outlet property="buyButton" destination="Lzt-a8-U8Z" id="cPH-U3-LkN"/>
                         <outlet property="colorLabel" destination="qSZ-A0-dxF" id="RmT-nE-O0w"/>
+                        <outlet property="discountLabel" destination="7xW-S9-ZW4" id="ptb-UM-HfF"/>
                         <outlet property="priceLabel" destination="E5t-hW-jYQ" id="myK-Fv-I4N"/>
                         <outlet property="productImage" destination="Jh5-io-tky" id="iog-Ds-IBm"/>
                         <outlet property="sizeCollection" destination="8qa-vO-aGp" id="BZE-St-QUU"/>

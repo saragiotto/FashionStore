@@ -97,11 +97,20 @@ class ProductViewModel {
             price = productModel.actualPrice
         }
         
+        var attrPrice: NSAttributedString?
+        
+        if (productModel.onSale ?? false) {
+            attrPrice = attributedString(productModel)
+        }
+        
         return ProductDetailModel(imageUrl: productModel.image ?? "",
                                   name: productModel.name?.capitalized ?? "",
                                   color: productModel.color?.capitalized ?? "",
                                   price: price ?? "",
-                                  sizes: sizes ?? [])
+                                  sizes: sizes ?? [],
+                                  discount: productModel.discountPercentage ?? "",
+                                  onSale: productModel.onSale ?? false,
+                                  attributedPrice: attrPrice)
     }
     
     func getProductModel(at indexPath:IndexPath) -> Product? {
@@ -136,5 +145,8 @@ struct ProductDetailModel {
     let color: String
     let price: String
     let sizes: [String]
+    let discount: String
+    let onSale: Bool
+    let attributedPrice: NSAttributedString?
 }
 

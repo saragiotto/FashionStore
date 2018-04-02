@@ -22,6 +22,7 @@ class ProductDetailViewController: UIViewController, UICollectionViewDelegate, U
     @IBOutlet weak var colorLabel: UILabel!
     @IBOutlet weak var sizeCollection: UICollectionView!
     @IBOutlet weak var buyButton: UIButton!
+    @IBOutlet weak var discountLabel: EdgeInsetLabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +35,19 @@ class ProductDetailViewController: UIViewController, UICollectionViewDelegate, U
             colorLabel.text = "\(kColorLabelName): \(color)"
         }
         priceLabel.text = productModel?.price
+        
+        if let attrPrice = productModel?.attributedPrice {
+            priceLabel.attributedText = attrPrice
+        }
+        
+        discountLabel.text = ""
+        if (productModel?.onSale ?? false) {
+            if let discount = productModel?.discount {
+                discountLabel.layer.cornerRadius = CGFloat(kDiscountCornerRadius)
+                discountLabel.clipsToBounds = true
+                discountLabel.text = "\(discount) off"
+            }
+        }
         
         sizeCollection.delegate = self
         sizeCollection.dataSource = self
