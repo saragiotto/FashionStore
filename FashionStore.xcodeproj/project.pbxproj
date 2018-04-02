@@ -22,6 +22,7 @@
 		982C780A206D74CB003228EF /* CartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982C7809206D74CB003228EF /* CartViewModel.swift */; };
 		982C780D206D783E003228EF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982C780C206D783E003228EF /* Constants.swift */; };
 		982C7810206D7CE6003228EF /* ProductResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982C780F206D7CE6003228EF /* ProductResponse.swift */; };
+		98744B402072CCA100A8CB8F /* FashionStoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98744B3F2072CCA100A8CB8F /* FashionStoreUITests.swift */; };
 		A705769F2071212100B3A768 /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A705769E2071212100B3A768 /* CartViewController.swift */; };
 		A73695A4206E84ED00B1ED50 /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73695A3206E84ED00B1ED50 /* ProductViewController.swift */; };
 		A73695A9206E869800B1ED50 /* ProductViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73695A7206E869800B1ED50 /* ProductViewCell.swift */; };
@@ -41,6 +42,13 @@
 
 /* Begin PBXContainerItemProxy section */
 		982463FE206D654D002E3F40 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 982463E1206D654D002E3F40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 982463E8206D654D002E3F40;
+			remoteInfo = FashionStore;
+		};
+		98744B422072CCA100A8CB8F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 982463E1206D654D002E3F40 /* Project object */;
 			proxyType = 1;
@@ -69,6 +77,10 @@
 		982C7809206D74CB003228EF /* CartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewModel.swift; sourceTree = "<group>"; };
 		982C780C206D783E003228EF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		982C780F206D7CE6003228EF /* ProductResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductResponse.swift; sourceTree = "<group>"; };
+		98744B382072CC6400A8CB8F /* FashionStoreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FashionStoreUITests.swift; sourceTree = "<group>"; };
+		98744B3D2072CCA100A8CB8F /* FashionStoreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FashionStoreUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		98744B3F2072CCA100A8CB8F /* FashionStoreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FashionStoreUITests.swift; sourceTree = "<group>"; };
+		98744B412072CCA100A8CB8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A705769E2071212100B3A768 /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
 		A73695A3206E84ED00B1ED50 /* ProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
 		A73695A7206E869800B1ED50 /* ProductViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewCell.swift; sourceTree = "<group>"; };
@@ -107,6 +119,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		98744B3A2072CCA100A8CB8F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -124,6 +143,8 @@
 			children = (
 				982463EB206D654D002E3F40 /* FashionStore */,
 				98246400206D654D002E3F40 /* FashionStoreTests */,
+				98744B372072CC3600A8CB8F /* FashionStoreUITests */,
+				98744B3E2072CCA100A8CB8F /* FashionStoreUITests */,
 				982463EA206D654D002E3F40 /* Products */,
 				F7EDD31F9055DFFD43FFADC6 /* Pods */,
 				088E004D4ADDEADD72E85EA9 /* Frameworks */,
@@ -135,6 +156,7 @@
 			children = (
 				982463E9206D654D002E3F40 /* FashionStore.app */,
 				982463FD206D654D002E3F40 /* FashionStoreTests.xctest */,
+				98744B3D2072CCA100A8CB8F /* FashionStoreUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -212,6 +234,23 @@
 				982C780C206D783E003228EF /* Constants.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		98744B372072CC3600A8CB8F /* FashionStoreUITests */ = {
+			isa = PBXGroup;
+			children = (
+				98744B382072CC6400A8CB8F /* FashionStoreUITests.swift */,
+			);
+			path = FashionStoreUITests;
+			sourceTree = "<group>";
+		};
+		98744B3E2072CCA100A8CB8F /* FashionStoreUITests */ = {
+			isa = PBXGroup;
+			children = (
+				98744B3F2072CCA100A8CB8F /* FashionStoreUITests.swift */,
+				98744B412072CCA100A8CB8F /* Info.plist */,
+			);
+			path = FashionStoreUITests;
 			sourceTree = "<group>";
 		};
 		A73695A2206E84C900B1ED50 /* ViewController */ = {
@@ -302,6 +341,24 @@
 			productReference = 982463FD206D654D002E3F40 /* FashionStoreTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		98744B3C2072CCA100A8CB8F /* FashionStoreUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 98744B442072CCA100A8CB8F /* Build configuration list for PBXNativeTarget "FashionStoreUITests" */;
+			buildPhases = (
+				98744B392072CCA100A8CB8F /* Sources */,
+				98744B3A2072CCA100A8CB8F /* Frameworks */,
+				98744B3B2072CCA100A8CB8F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				98744B432072CCA100A8CB8F /* PBXTargetDependency */,
+			);
+			name = FashionStoreUITests;
+			productName = FashionStoreUITests;
+			productReference = 98744B3D2072CCA100A8CB8F /* FashionStoreUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -317,6 +374,11 @@
 						ProvisioningStyle = Automatic;
 					};
 					982463FC206D654D002E3F40 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 982463E8206D654D002E3F40;
+					};
+					98744B3C2072CCA100A8CB8F = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 982463E8206D654D002E3F40;
@@ -338,6 +400,7 @@
 			targets = (
 				982463E8206D654D002E3F40 /* FashionStore */,
 				982463FC206D654D002E3F40 /* FashionStoreTests */,
+				98744B3C2072CCA100A8CB8F /* FashionStoreUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -359,6 +422,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		982463FB206D654D002E3F40 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		98744B3B2072CCA100A8CB8F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -510,6 +580,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		98744B392072CCA100A8CB8F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				98744B402072CCA100A8CB8F /* FashionStoreUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -517,6 +595,11 @@
 			isa = PBXTargetDependency;
 			target = 982463E8206D654D002E3F40 /* FashionStore */;
 			targetProxy = 982463FE206D654D002E3F40 /* PBXContainerItemProxy */;
+		};
+		98744B432072CCA100A8CB8F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 982463E8206D654D002E3F40 /* FashionStore */;
+			targetProxy = 98744B422072CCA100A8CB8F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -713,6 +796,36 @@
 			};
 			name = Release;
 		};
+		98744B452072CCA100A8CB8F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K2EC4B8BC2;
+				INFOPLIST_FILE = FashionStoreUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.home.FashionStoreUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FashionStore;
+			};
+			name = Debug;
+		};
+		98744B462072CCA100A8CB8F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K2EC4B8BC2;
+				INFOPLIST_FILE = FashionStoreUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.home.FashionStoreUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FashionStore;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -739,6 +852,15 @@
 			buildConfigurations = (
 				9824640A206D654D002E3F40 /* Debug */,
 				9824640B206D654D002E3F40 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		98744B442072CCA100A8CB8F /* Build configuration list for PBXNativeTarget "FashionStoreUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				98744B452072CCA100A8CB8F /* Debug */,
+				98744B462072CCA100A8CB8F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
