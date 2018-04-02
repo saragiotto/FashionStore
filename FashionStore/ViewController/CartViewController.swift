@@ -60,14 +60,21 @@ class CartViewController: UIViewController {
         totalCart = CartViewModel.shared.totalCart()
     }
 
+    /* This is just for somulation proposals
+     
+     Every new product cost R$ 2,20 for shipping
+     Every product additional item cost R$ 1,00 for shipping
+     
+     Shipping cost start at R$ 10,00
+    */
     private func calculateShippingCost() {
         let numberOfItens = CartViewModel.shared.cartItens
         let numberOfCells = CartViewModel.shared.numberOfCells
-        
         let shippingCostForCell = Double(numberOfCells) * 2.2
         let shippingCostForExtraItem = Double(numberOfItens - numberOfCells) * 1.0
+        let startCost = (CartViewModel.shared.numberOfCells == 0) ? 0.0 : 10.0
         
-        shippingCost = 10.0 + shippingCostForCell + shippingCostForExtraItem
+        shippingCost = startCost + shippingCostForCell + shippingCostForExtraItem
     }
     
     override func didReceiveMemoryWarning() {
