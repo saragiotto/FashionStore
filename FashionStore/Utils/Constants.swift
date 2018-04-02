@@ -26,6 +26,7 @@ let kNavigationTitle = "AMARO"
 let kCartViewTitle = "Sacola"
 let kColorLabelName = "Cor"
 let kSizeLabelName = "Tamanho"
+let kCartDeleteProduct = "Excluir"
 
 let kDiscountCornerRadius = 5.0
 let kCountChangeRadius = 8.0

@@ -134,6 +134,18 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource {
         
         return UITableViewCell()
     }
+    
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return kCartDeleteProduct
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            CartViewModel.shared.removeAllItens(at: indexPath)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            self.updateCart()
+        }
+    }
 }
 
 extension CartViewController: CartProductCellDelegate {

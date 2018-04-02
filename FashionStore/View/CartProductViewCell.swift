@@ -59,6 +59,9 @@ class CartProductViewCell: UITableViewCell {
             productImage.contentMode = .scaleAspectFill
             productImage.kf.setImage(with: url,
                                      options:[.transition(.fade(0.3))])
+        } else {
+            productImage.contentMode = .scaleAspectFit
+            productImage.image = UIImage(named: kProductNoImageName)
         }
     }
     

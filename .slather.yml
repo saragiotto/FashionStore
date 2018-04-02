@@ -6,4 +6,5 @@ workspace: FashionStore.xcworkspace
 source_directory: FashionStore
 binary_basename: FashionStore
 ignore:
-  - 'Pods/*'
+  - Pods/*
+  - FashionStoreTests/*
