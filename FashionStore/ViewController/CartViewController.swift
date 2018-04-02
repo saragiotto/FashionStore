@@ -16,6 +16,7 @@ class CartViewController: UIViewController {
     @IBOutlet weak var totalCartLabel: UILabel!
     @IBOutlet weak var processCart: UIButton!
     
+    @IBOutlet weak var emptyCartView: UIView!
     private var shippingCost: Double? {
         didSet {
             self.shippingCostLabel.text = NumberFormatter().currencyWith(shippingCost ?? 0.0)
@@ -35,6 +36,12 @@ class CartViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         configureView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.emptyCartMessage()
     }
     
     private func configureView() {
@@ -71,16 +78,14 @@ class CartViewController: UIViewController {
     @IBAction func closeCartView(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    private func emptyCartMessage() {
+        let hidden = (CartViewModel.shared.numberOfCells != 0)
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            self.emptyCartView.isHidden = hidden
+        })
     }
-    */
-
 }
 
 extension CartViewController: UITableViewDelegate, UITableViewDataSource {
@@ -114,6 +119,7 @@ extension CartViewController: CartProductCellDelegate {
                 break
             }
             self.cartTableView.reloadData()
+            self.emptyCartMessage()
             totalCart = CartViewModel.shared.totalCart()
         }
     }

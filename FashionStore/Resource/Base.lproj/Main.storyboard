@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -77,7 +78,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shoppingBag" translatesAutoresizingMaskIntoConstraints="NO" id="Jh5-io-tky">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Jh5-io-tky">
                                 <rect key="frame" x="0.0" y="64" width="414" height="350"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="350" id="9GS-bU-WI7"/>
@@ -196,9 +197,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iZZ-CE-cH6">
+                                <rect key="frame" x="0.0" y="64" width="414" height="528"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sua sacola está vazia =/ Hora das compras !" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8fR-y9-NbQ">
+                                        <rect key="frame" x="82.666666666666686" y="289" width="250" height="57.333333333333314"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="250" id="JHe-vd-ldh"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shoppingBag" translatesAutoresizingMaskIntoConstraints="NO" id="XNM-nG-uub">
+                                        <rect key="frame" x="147" y="124.66666666666666" width="120" height="120"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="120" id="dP8-Ym-dNd"/>
+                                            <constraint firstAttribute="height" constant="120" id="p6z-BU-Z9O"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="8fR-y9-NbQ" firstAttribute="centerX" secondItem="iZZ-CE-cH6" secondAttribute="centerX" id="1hJ-OS-5EF"/>
+                                    <constraint firstItem="XNM-nG-uub" firstAttribute="centerX" secondItem="iZZ-CE-cH6" secondAttribute="centerX" id="P4l-Md-L5e"/>
+                                    <constraint firstItem="XNM-nG-uub" firstAttribute="centerY" secondItem="iZZ-CE-cH6" secondAttribute="centerY" multiplier="0.7" id="Qhw-t1-ikz"/>
+                                    <constraint firstItem="8fR-y9-NbQ" firstAttribute="centerY" secondItem="iZZ-CE-cH6" secondAttribute="centerY" multiplier="1.2" id="Yrj-Yq-9eC"/>
+                                </constraints>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6fP-xe-UDN">
                                 <rect key="frame" x="0.0" y="64" width="414" height="528"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="7wF-ub-cbE">
@@ -281,13 +310,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="7wF-ub-cbE" firstAttribute="top" secondItem="iZZ-CE-cH6" secondAttribute="bottom" constant="8" id="Apx-Od-oQW"/>
                             <constraint firstItem="6fP-xe-UDN" firstAttribute="top" secondItem="6XA-O5-ZJG" secondAttribute="top" id="HLB-lP-lf7"/>
                             <constraint firstItem="6XA-O5-ZJG" firstAttribute="trailing" secondItem="7wF-ub-cbE" secondAttribute="trailing" constant="8" id="Kzq-gG-ngE"/>
                             <constraint firstItem="7wF-ub-cbE" firstAttribute="top" secondItem="6fP-xe-UDN" secondAttribute="bottom" constant="8" id="O5R-pC-hFr"/>
                             <constraint firstItem="6fP-xe-UDN" firstAttribute="leading" secondItem="6XA-O5-ZJG" secondAttribute="leading" id="QIt-xL-PCi"/>
+                            <constraint firstItem="iZZ-CE-cH6" firstAttribute="leading" secondItem="6XA-O5-ZJG" secondAttribute="leading" id="RmH-vE-hfU"/>
                             <constraint firstItem="6XA-O5-ZJG" firstAttribute="trailing" secondItem="6fP-xe-UDN" secondAttribute="trailing" id="W2S-OX-cfh"/>
+                            <constraint firstItem="iZZ-CE-cH6" firstAttribute="top" secondItem="6XA-O5-ZJG" secondAttribute="top" id="WhU-0H-L6g"/>
                             <constraint firstItem="6XA-O5-ZJG" firstAttribute="bottom" secondItem="7wF-ub-cbE" secondAttribute="bottom" constant="8" id="lta-JY-dOw"/>
                             <constraint firstItem="7wF-ub-cbE" firstAttribute="leading" secondItem="6XA-O5-ZJG" secondAttribute="leading" constant="8" id="oJ6-jC-Q7U"/>
+                            <constraint firstItem="iZZ-CE-cH6" firstAttribute="trailing" secondItem="6XA-O5-ZJG" secondAttribute="trailing" id="vEG-gp-sUa"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6XA-O5-ZJG"/>
                     </view>
@@ -301,6 +334,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="cartTableView" destination="6fP-xe-UDN" id="mV4-ao-f4V"/>
+                        <outlet property="emptyCartView" destination="iZZ-CE-cH6" id="6aN-w2-lzW"/>
                         <outlet property="processCart" destination="vKw-f1-zap" id="YLu-ol-ufv"/>
                         <outlet property="shippingCostLabel" destination="qsY-mf-j7M" id="F8U-zn-xBw"/>
                         <outlet property="subTotalLabel" destination="Odq-xS-vWF" id="lrP-S1-ASM"/>
@@ -309,7 +343,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RwC-Kx-i7F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2478.75" y="936.97183098591552"/>
+            <point key="canvasLocation" x="2478.2608695652175" y="936.68478260869574"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="eAr-4m-FDt">

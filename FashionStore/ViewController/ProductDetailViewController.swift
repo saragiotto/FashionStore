@@ -56,9 +56,12 @@ class ProductDetailViewController: UIViewController, UICollectionViewDelegate, U
         sizeCollection.register(sizeCellNib, forCellWithReuseIdentifier: kSizeCellIdentifier)
         
         if let imageUrl = productModel?.imageUrl, let url = URL(string: imageUrl) {
-            productImage.contentMode = .scaleAspectFill
+            productImage.contentMode = .scaleAspectFit
             productImage.kf.setImage(with: url,
                                      options:[.transition(.fade(0.3))])
+        } else {
+            productImage.contentMode = .center
+            productImage.image = UIImage(named: kProductNoImageName)
         }
         
         buyButton.layer.cornerRadius = CGFloat(kDiscountCornerRadius)
