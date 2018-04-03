@@ -2,7 +2,7 @@
 # * http://www.objc.io/issue-6/travis-ci.html
 # * https://github.com/supermarin/xcpretty#usage
 
-osx_image: xcode9.3beta
+osx_image: xcode9.2
 language: swift
 # cache: cocoapods
 # podfile: Example/Podfile
@@ -14,4 +14,4 @@ before_install:
 after_success: 
   - bash <(curl -s https://codecov.io/bash) -t ba92fd5d-4148-4a70-ac23-f2eaa4da6c19
 script:
-- xcodebuild test -enableCodeCoverage YES -workspace FashionStore.xcworkspace -configuration Debug -scheme FashionStore -sdk iphonesimulator11.3 -destination 'platform=iOS Simulator,name=iPhone 8,OS=11.3' ONLY_ACTIVE_ARCH=YES VALID_ARCHS=x86_64
+- set -o pipefail && xcodebuild clean test -enableCodeCoverage YES -workspace FashionStore.xcworkspace -configuration Debug -scheme FashionStore -sdk iphonesimulator11.2 -destination 'platform=iOS Simulator,name=iPhone 8,OS=11.2' | xcpretty
