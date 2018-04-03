@@ -77,7 +77,6 @@
 		982C7809206D74CB003228EF /* CartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewModel.swift; sourceTree = "<group>"; };
 		982C780C206D783E003228EF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		982C780F206D7CE6003228EF /* ProductResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductResponse.swift; sourceTree = "<group>"; };
-		98744B382072CC6400A8CB8F /* FashionStoreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FashionStoreUITests.swift; sourceTree = "<group>"; };
 		98744B3D2072CCA100A8CB8F /* FashionStoreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FashionStoreUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		98744B3F2072CCA100A8CB8F /* FashionStoreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FashionStoreUITests.swift; sourceTree = "<group>"; };
 		98744B412072CCA100A8CB8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -143,7 +142,6 @@
 			children = (
 				982463EB206D654D002E3F40 /* FashionStore */,
 				98246400206D654D002E3F40 /* FashionStoreTests */,
-				98744B372072CC3600A8CB8F /* FashionStoreUITests */,
 				98744B3E2072CCA100A8CB8F /* FashionStoreUITests */,
 				982463EA206D654D002E3F40 /* Products */,
 				F7EDD31F9055DFFD43FFADC6 /* Pods */,
@@ -234,14 +232,6 @@
 				982C780C206D783E003228EF /* Constants.swift */,
 			);
 			path = Utils;
-			sourceTree = "<group>";
-		};
-		98744B372072CC3600A8CB8F /* FashionStoreUITests */ = {
-			isa = PBXGroup;
-			children = (
-				98744B382072CC6400A8CB8F /* FashionStoreUITests.swift */,
-			);
-			path = FashionStoreUITests;
 			sourceTree = "<group>";
 		};
 		98744B3E2072CCA100A8CB8F /* FashionStoreUITests */ = {

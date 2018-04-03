@@ -49,7 +49,7 @@ class CartViewModelTests: XCTestCase {
         productVM.didFinishFetchClosure = {
             productVM.addToCartProduct(at: self.first, sizeAt: self.first)
             
-            let totalCart = self.viewModel?.totalCart()
+            let totalCart = self.viewModel?.subTotalCost
             XCTAssert((totalCart ?? 0.0) == 199.90)
             
             exp.fulfill()
@@ -69,7 +69,7 @@ class CartViewModelTests: XCTestCase {
             let last = IndexPath(row: productVM.numberOfCells - 1, section: 0)
             productVM.addToCartProduct(at: last, sizeAt: self.first)
             
-            let totalCart = self.viewModel?.totalCart()
+            let totalCart = self.viewModel?.subTotalCost
             XCTAssert(totalCart ?? 0.0 == 229.80)
             
             exp.fulfill()
@@ -109,7 +109,7 @@ class CartViewModelTests: XCTestCase {
             productVM.addToCartProduct(at: self.first, sizeAt: self.first)
             productVM.addToCartProduct(at: self.first, sizeAt: self.first)
 
-            let totalCart = self.viewModel?.totalCart()
+            let totalCart = self.viewModel?.subTotalCost
             XCTAssert(totalCart ?? 0.0 == 399.80)
             
             exp.fulfill()
@@ -130,12 +130,12 @@ class CartViewModelTests: XCTestCase {
             let last = IndexPath(row: productVM.numberOfCells - 1, section: 0)
             productVM.addToCartProduct(at: last, sizeAt: self.first)
             
-            var totalCart = self.viewModel?.totalCart()
+            var totalCart = self.viewModel?.subTotalCost
             XCTAssert(totalCart ?? 0.0 == 229.80)
             
             self.viewModel?.removeAllItens(at: self.first)
             
-            totalCart = self.viewModel?.totalCart()
+            totalCart = self.viewModel?.subTotalCost
             XCTAssert(totalCart ?? 0.0 == 29.90)
             
             exp.fulfill()
@@ -154,13 +154,13 @@ class CartViewModelTests: XCTestCase {
             productVM.addToCartProduct(at: self.first, sizeAt: self.first)
             productVM.addToCartProduct(at: self.first, sizeAt: self.first)
             
-            var totalCart = self.viewModel?.totalCart()
+            var totalCart = self.viewModel?.subTotalCost
             XCTAssert(totalCart ?? 0.0 == 599.70)
             
             self.viewModel?.removeItem(at: self.first)
             self.viewModel?.removeItem(at: self.first)
             
-            totalCart = self.viewModel?.totalCart()
+            totalCart = self.viewModel?.subTotalCost
             XCTAssert(totalCart ?? 0.0 == 199.90)
             
             exp.fulfill()
@@ -180,7 +180,7 @@ class CartViewModelTests: XCTestCase {
             
             self.viewModel?.removeAllItens(at: self.first)
             
-            let totalCart = self.viewModel?.totalCart()
+            let totalCart = self.viewModel?.subTotalCost
             XCTAssert(totalCart ?? 0.0 == 0.0)
             
             exp.fulfill()
@@ -197,7 +197,7 @@ class CartViewModelTests: XCTestCase {
         productVM.didFinishFetchClosure = {
             productVM.addToCartProduct(at: self.first, sizeAt: self.first)
             
-            let totalCart = self.viewModel?.totalCart()
+            let totalCart = self.viewModel?.subTotalCost
             XCTAssert(totalCart ?? 0.0 == 119.90)
             
             exp.fulfill()
