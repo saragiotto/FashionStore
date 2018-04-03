@@ -2,3 +2,4 @@ ignore:
     - "FashionStore/Support/AppDelegate.swift"
     - "FashionStoreTests/.*"
     - "FashionStoreUITests/.*"
+    - "Pods/.*"
