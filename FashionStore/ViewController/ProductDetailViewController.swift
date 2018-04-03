@@ -123,13 +123,7 @@ class ProductDetailViewController: UIViewController, UICollectionViewDelegate, U
         }
         
         if let productIP = self.productIndexPath, let sizeIP = self.sizeIndexPath {
-            guard let product = productVM?.getProductModel(at: productIP) else {
-                return
-            }
-            guard let size = productVM?.getAvailableSize(product, at: sizeIP) else {
-                return
-            }
-            CartViewModel.shared.addProduct(product, of: size)
+            self.productVM?.addToCartProduct(at: productIP, sizeAt: sizeIP)
             
             self.performSegue(withIdentifier: kCartSegue, sender: nil)
         }

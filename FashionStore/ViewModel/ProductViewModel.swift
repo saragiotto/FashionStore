@@ -113,10 +113,6 @@ class ProductViewModel {
                                   attributedPrice: attrPrice)
     }
     
-    func getProductModel(at indexPath:IndexPath) -> Product? {
-        return self.products.indices.contains(indexPath.row) ? self.products[indexPath.row] : nil
-    }
-    
     func getAvailableSize(_ product:Product, at indexPath:IndexPath) -> ProductSize? {
         let availableSizes = product.sizes?.filter({ size in
             return (size.available ?? false)
@@ -127,6 +123,18 @@ class ProductViewModel {
         }
         
         return nil
+    }
+    
+    func addToCartProduct(at productIndexPath:IndexPath, sizeAt sizeIndexPath:IndexPath) {
+        guard let product = self.products.indices.contains(productIndexPath.row) ? self.products[productIndexPath.row] : nil else {
+            return
+        }
+        
+        guard let size = self.getAvailableSize(product, at: sizeIndexPath) else {
+            return
+        }
+        
+        CartViewModel.shared.addProduct(product, of: size)
     }
 }
 
