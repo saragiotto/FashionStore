@@ -189,4 +189,21 @@ class CartViewModelTests: XCTestCase {
         
         waitForExpectations(timeout: 10, handler: nil)
     }
+    
+    func testOnSaleProducts() {
+        let exp = expectation(description: "\(#function)\(#line)")
+        let productVM = ProductViewModel()
+        
+        productVM.didFinishFetchClosure = {
+            productVM.addToCartProduct(at: self.first, sizeAt: self.first)
+            
+            let totalCart = self.viewModel?.totalCart()
+            XCTAssert(totalCart ?? 0.0 == 119.90)
+            
+            exp.fulfill()
+        }
+        productVM.fetchProducts(onSale: true)
+        
+        waitForExpectations(timeout: 10, handler: nil)
+    }
 }
