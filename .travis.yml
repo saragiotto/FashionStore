@@ -15,6 +15,6 @@ install:
   - gem install slather --no-rdoc --no-ri --no-document --quiet
 after_success: 
   - slather
-  - bash <(curl -s https://codecov.io/bash) -f ./xml_report/cobertura.xml -X coveragepy -X gcov -X xcode -t 914802df-2d31-4f56-95e3-99ee2f287a91
+  - bash <(curl -s https://codecov.io/bash) -t ba92fd5d-4148-4a70-ac23-f2eaa4da6c19
 script:
-- set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace FashionStore.xcworkspace -scheme FashionStore -sdk iphonesimulator11.2 -destination 'platform=iOS Simulator,name=iPhone 8,OS=11.2' ONLY_ACTIVE_ARCH=YES VALID_ARCHS=x86_64 | xcpretty
+- xcodebuild -scheme FashionStore -workspace FashionStore.xcworkspace -sdk iphonesimulator11.2 -destination 'platform=iOS Simulator,name=iPhone 8,OS=11.2' ONLY_ACTIVE_ARCH=YES VALID_ARCHS=x86_64 build test
