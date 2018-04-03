@@ -85,19 +85,50 @@ class CartViewModel {
         cart.products = cart.products?.filter({$0 != productCart})
     }
     
-    
-    
     private func cartHasItem(_ productCart: CartProduct) -> CartProduct? {
         return cart.products?.filter({$0 == productCart}).first
     }
     
-    func totalCart() -> Double {
+    var subTotalCost: Double {
         let amount = cart.products?.reduce(0.0, { amount, productCart in
             amount + ((productCart.product.productPrice ?? 0.0) * Double(productCart.count))
         })
         
         return amount ?? 0.0
     }
+    
+    /* This is just for simulation proposals
+     
+     Every new product cost R$ 2,20 for shipping
+     Every product additional item cost R$ 1,00 for shipping
+     
+     Shipping cost start at R$ 10,00
+     */
+    var shippingCost: Double {
+        let numberOfItens = self.cartItens
+        let numberOfCells = self.numberOfCells
+        let shippingCostForCell = Double(numberOfCells) * kShippingCostForProduct
+        let shippingCostForExtraItem = Double(numberOfItens - numberOfCells) * kShippingCostForExtraItem
+        let startCost = (self.numberOfCells == 0) ? 0.0 : kShippingStartCost
+        
+        return startCost + shippingCostForCell + shippingCostForExtraItem
+    }
+    
+    func getCartModel() -> CartModel {
+        let subTotal = self.subTotalCost
+        let shipping = self.shippingCost
+        let total = subTotal + shipping
+        
+        return CartModel(subTotalCost: NumberFormatter().currencyWith(subTotal),
+                         shippingCost: NumberFormatter().currencyWith(shipping),
+                         totalCost: NumberFormatter().currencyWith(total))
+    }
+}
+
+struct CartModel {
+    let subTotalCost: String
+    let shippingCost: String
+    let totalCost: String
 }
 
 struct CartProductCellModel {
