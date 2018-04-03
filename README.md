@@ -16,31 +16,41 @@ Na tela de detalhe é apresentada uma foto grande do produto, seu respectivo des
 
 A tela da Sacola pode ser acessada tanto pela tela de catalogo como pela tela de detalhe. Essa tela apresenta a lista de todos os produtos na sacalo. A cor e o tamanho selecionados no momento da compra e também a quantidade. O cliente pode alterar a quantidade de itens livremente. Na parte inferior da tela é apresentado o total dos itens na sacola, o custo de envio e o total da compra. Ao clicar em Finalizar Compra é apresentada uma mensagem de agradecimento e a sacola é envaziada.
 
-Design pattern utilizado Model-View-ViewModel (MVVM)
+## Design Pattern 
 
-##Travis CI
-Utilizado Travis-CI na integração continua do projeto [![CI Status](http://img.shields.io/travis/saragiotto/FashionStore.svg?style=flat)](https://travis-ci.org/saragiotto/FashionStore)
+* __Model-View-ViewModel (MVVM)__
+
+## Travis CI
+
+Utilizado Travis-CI na integração continua do projeto 
+
+[![CI Status](http://img.shields.io/travis/saragiotto/FashionStore.svg?style=flat)](https://travis-ci.org/saragiotto/FashionStore)
 
 ![](https://avatars0.githubusercontent.com/u/639823?s=100&v=4)
 
-##Code Cov 
-Report de code coverage registrado no CodeCov.io [![codecov.io](https://codecov.io/gh/saragiotto/FashionStore/branch/master/graphs/badge.svg)](https://codecov.io/gh/saragiotto/FashionStore/branch/master)
+## Code Cov 
+
+Report de code coverage registrado no CodeCov.io 
+
+[![codecov.io](https://codecov.io/gh/saragiotto/FashionStore/branch/master/graphs/badge.svg)](https://codecov.io/gh/saragiotto/FashionStore/branch/master)
 
 ![](https://avatars0.githubusercontent.com/u/8226205?s=100&v=4)
 
-##Source Files
-####Model files
+## Source Files
+#### Model files
 
 ```
 Product.swift
 ProductSize.swift
 ```
 
-####ViewModel files
+#### ViewModel files
 
-```ProductViewModel.swift```
+```
+ProductViewModel.swift
+```
 
-####ViewController files
+#### ViewController files
 
 ```
 ProductViewController.swift
