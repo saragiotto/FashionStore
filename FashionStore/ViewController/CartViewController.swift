@@ -15,27 +15,14 @@ class CartViewController: UIViewController {
     @IBOutlet weak var shippingCostLabel: UILabel!
     @IBOutlet weak var totalCartLabel: UILabel!
     @IBOutlet weak var processCart: UIButton!
-    
     @IBOutlet weak var emptyCartView: UIView!
-    private var shippingCost: Double? {
-        didSet {
-            self.shippingCostLabel.text = NumberFormatter().currencyWith(shippingCost ?? 0.0)
-        }
-    }
-    
-    private var totalCart: Double? {
-        didSet {
-            self.subTotalLabel.text = NumberFormatter().currencyWith(totalCart ?? 0.0)
-            calculateShippingCost()
-            self.totalCartLabel.text = NumberFormatter().currencyWith((totalCart ?? 0.0) + (shippingCost ?? 0.0))
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        configureView()
+        self.configureView()
+        self.populateView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,38 +43,21 @@ class CartViewController: UIViewController {
         
         processCart.layer.cornerRadius = CGFloat(kDiscountCornerRadius)
         processCart.clipsToBounds = true
-        
-        totalCart = CartViewModel.shared.totalCart()
+    }
+    
+    private func populateView() {
+        let cartModel = CartViewModel.shared.getCartModel()
+
+        self.subTotalLabel.text = cartModel.subTotalCost
+        self.shippingCostLabel.text = cartModel.shippingCost
+        self.totalCartLabel.text = cartModel.totalCost
     }
 
-    /* This is just for simulation proposals
-     
-     Every new product cost R$ 2,20 for shipping
-     Every product additional item cost R$ 1,00 for shipping
-     
-     Shipping cost start at R$ 10,00
-    */
-    private func calculateShippingCost() {
-        let numberOfItens = CartViewModel.shared.cartItens
-        let numberOfCells = CartViewModel.shared.numberOfCells
-        let shippingCostForCell = Double(numberOfCells) * kShippingCostForProduct
-        let shippingCostForExtraItem = Double(numberOfItens - numberOfCells) * kShippingCostForExtraItem
-        let startCost = (CartViewModel.shared.numberOfCells == 0) ? 0.0 : kShippingStartCost
-        
-        shippingCost = startCost + shippingCostForCell + shippingCostForExtraItem
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     @IBAction func closeCartView(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func processUsersCart(_ sender: Any) {
-        
         if CartViewModel.shared.numberOfCells == 0 {
             return
         }
@@ -113,7 +83,8 @@ class CartViewController: UIViewController {
     
     private func updateCart() {
         self.cartTableView.reloadData()
-        totalCart = CartViewModel.shared.totalCart()
+        self.emptyCartMessage()
+        self.populateView()
     }
 }
 
@@ -143,7 +114,6 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource {
         if (editingStyle == .delete) {
             CartViewModel.shared.removeAllItens(at: indexPath)
             tableView.deleteRows(at: [indexPath], with: .fade)
-            self.emptyCartMessage()
             self.updateCart()
         }
     }
@@ -160,7 +130,6 @@ extension CartViewController: CartProductCellDelegate {
                 CartViewModel.shared.removeItem(at: indexPath)
                 break
             }
-            self.emptyCartMessage()
             self.updateCart()
         }
     }

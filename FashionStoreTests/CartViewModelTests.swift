@@ -31,16 +31,7 @@ class CartViewModelTests: XCTestCase {
         let productVM = ProductViewModel()
         
         productVM.didFinishFetchClosure = {
-            guard let product = productVM.getProductModel(at: self.first) else {
-                XCTAssert(false)
-                return
-            }
-            guard let size = productVM.getAvailableSize(product, at: self.first) else {
-                XCTAssert(false)
-                return
-            }
-            
-            self.viewModel?.addProduct(product, of: size)
+            productVM.addToCartProduct(at: self.first, sizeAt: self.first)
             
             XCTAssert((self.viewModel?.cartItens ?? 0) > 0)
             
@@ -56,18 +47,10 @@ class CartViewModelTests: XCTestCase {
         let productVM = ProductViewModel()
         
         productVM.didFinishFetchClosure = {
-            guard let product = productVM.getProductModel(at: self.first) else {
-                XCTAssert(false)
-                return
-            }
-            guard let size = productVM.getAvailableSize(product, at: self.first) else {
-                XCTAssert(false)
-                return
-            }
+            productVM.addToCartProduct(at: self.first, sizeAt: self.first)
             
-            self.viewModel?.addProduct(product, of: size)
-            let totalCart = self.viewModel?.totalCart()
-            XCTAssert((totalCart ?? 0.0) == (product.productPrice ?? 0.0))
+            let totalCart = self.viewModel?.subTotalCost
+            XCTAssert((totalCart ?? 0.0) == 199.90)
             
             exp.fulfill()
         }
@@ -81,28 +64,12 @@ class CartViewModelTests: XCTestCase {
         let productVM = ProductViewModel()
         
         productVM.didFinishFetchClosure = {
-            guard let product = productVM.getProductModel(at: self.first) else {
-                XCTAssert(false)
-                return
-            }
-            guard let size = productVM.getAvailableSize(product, at: self.first) else {
-                XCTAssert(false)
-                return
-            }
+            productVM.addToCartProduct(at: self.first, sizeAt: self.first)
+            
             let last = IndexPath(row: productVM.numberOfCells - 1, section: 0)
-            guard let anotherProduct = productVM.getProductModel(at: last) else {
-                XCTAssert(false)
-                return
-            }
-            guard let anotherSize = productVM.getAvailableSize(anotherProduct, at: self.first) else {
-                XCTAssert(false)
-                return
-            }
+            productVM.addToCartProduct(at: last, sizeAt: self.first)
             
-            self.viewModel?.addProduct(product, of: size)
-            self.viewModel?.addProduct(anotherProduct, of: anotherSize)
-            
-            let totalCart = self.viewModel?.totalCart()
+            let totalCart = self.viewModel?.subTotalCost
             XCTAssert(totalCart ?? 0.0 == 229.80)
             
             exp.fulfill()
@@ -117,17 +84,8 @@ class CartViewModelTests: XCTestCase {
         let productVM = ProductViewModel()
         
         productVM.didFinishFetchClosure = {
-            guard let product = productVM.getProductModel(at: self.first) else {
-                XCTAssert(false)
-                return
-            }
-            guard let size = productVM.getAvailableSize(product, at: self.first) else {
-                XCTAssert(false)
-                return
-            }
-            
-            self.viewModel?.addProduct(product, of: size)
-            self.viewModel?.addProduct(product, of: size)
+            productVM.addToCartProduct(at: self.first, sizeAt: self.first)
+            productVM.addToCartProduct(at: self.first, sizeAt: self.first)
             
             guard let finalItem = self.viewModel?.getCartProduct(at: self.first) else {
                 XCTAssert(false)
@@ -148,19 +106,10 @@ class CartViewModelTests: XCTestCase {
         let productVM = ProductViewModel()
         
         productVM.didFinishFetchClosure = {
-            guard let product = productVM.getProductModel(at: self.first) else {
-                XCTAssert(false)
-                return
-            }
-            guard let size = productVM.getAvailableSize(product, at: self.first) else {
-                XCTAssert(false)
-                return
-            }
-            
-            self.viewModel?.addProduct(product, of: size)
-            self.viewModel?.addProduct(product, of: size)
+            productVM.addToCartProduct(at: self.first, sizeAt: self.first)
+            productVM.addToCartProduct(at: self.first, sizeAt: self.first)
 
-            let totalCart = self.viewModel?.totalCart()
+            let totalCart = self.viewModel?.subTotalCost
             XCTAssert(totalCart ?? 0.0 == 399.80)
             
             exp.fulfill()
@@ -176,33 +125,17 @@ class CartViewModelTests: XCTestCase {
         let productVM = ProductViewModel()
         
         productVM.didFinishFetchClosure = {
-            guard let product = productVM.getProductModel(at: self.first) else {
-                XCTAssert(false)
-                return
-            }
-            guard let size = productVM.getAvailableSize(product, at: self.first) else {
-                XCTAssert(false)
-                return
-            }
+            productVM.addToCartProduct(at: self.first, sizeAt: self.first)
+            
             let last = IndexPath(row: productVM.numberOfCells - 1, section: 0)
-            guard let anotherProduct = productVM.getProductModel(at: last) else {
-                XCTAssert(false)
-                return
-            }
-            guard let anotherSize = productVM.getAvailableSize(anotherProduct, at: self.first) else {
-                XCTAssert(false)
-                return
-            }
+            productVM.addToCartProduct(at: last, sizeAt: self.first)
             
-            self.viewModel?.addProduct(product, of: size)
-            self.viewModel?.addProduct(anotherProduct, of: anotherSize)
-            
-            var totalCart = self.viewModel?.totalCart()
+            var totalCart = self.viewModel?.subTotalCost
             XCTAssert(totalCart ?? 0.0 == 229.80)
             
             self.viewModel?.removeAllItens(at: self.first)
             
-            totalCart = self.viewModel?.totalCart()
+            totalCart = self.viewModel?.subTotalCost
             XCTAssert(totalCart ?? 0.0 == 29.90)
             
             exp.fulfill()
@@ -217,26 +150,17 @@ class CartViewModelTests: XCTestCase {
         let productVM = ProductViewModel()
         
         productVM.didFinishFetchClosure = {
-            guard let product = productVM.getProductModel(at: self.first) else {
-                XCTAssert(false)
-                return
-            }
-            guard let size = productVM.getAvailableSize(product, at: self.first) else {
-                XCTAssert(false)
-                return
-            }
+            productVM.addToCartProduct(at: self.first, sizeAt: self.first)
+            productVM.addToCartProduct(at: self.first, sizeAt: self.first)
+            productVM.addToCartProduct(at: self.first, sizeAt: self.first)
             
-            self.viewModel?.addProduct(product, of: size)
-            self.viewModel?.addProduct(product, of: size)
-            self.viewModel?.addProduct(product, of: size)
-            
-            var totalCart = self.viewModel?.totalCart()
+            var totalCart = self.viewModel?.subTotalCost
             XCTAssert(totalCart ?? 0.0 == 599.70)
             
             self.viewModel?.removeItem(at: self.first)
             self.viewModel?.removeItem(at: self.first)
             
-            totalCart = self.viewModel?.totalCart()
+            totalCart = self.viewModel?.subTotalCost
             XCTAssert(totalCart ?? 0.0 == 199.90)
             
             exp.fulfill()
@@ -252,24 +176,33 @@ class CartViewModelTests: XCTestCase {
         let productVM = ProductViewModel()
         
         productVM.didFinishFetchClosure = {
-            guard let product = productVM.getProductModel(at: self.first) else {
-                XCTAssert(false)
-                return
-            }
-            guard let size = productVM.getAvailableSize(product, at: self.first) else {
-                XCTAssert(false)
-                return
-            }
+            productVM.addToCartProduct(at: self.first, sizeAt: self.first)
             
-            self.viewModel?.addProduct(product, of: size)
             self.viewModel?.removeAllItens(at: self.first)
             
-            let totalCart = self.viewModel?.totalCart()
+            let totalCart = self.viewModel?.subTotalCost
             XCTAssert(totalCart ?? 0.0 == 0.0)
             
             exp.fulfill()
         }
         productVM.fetchProducts()
+        
+        waitForExpectations(timeout: 10, handler: nil)
+    }
+    
+    func testOnSaleProducts() {
+        let exp = expectation(description: "\(#function)\(#line)")
+        let productVM = ProductViewModel()
+        
+        productVM.didFinishFetchClosure = {
+            productVM.addToCartProduct(at: self.first, sizeAt: self.first)
+            
+            let totalCart = self.viewModel?.subTotalCost
+            XCTAssert(totalCart ?? 0.0 == 119.90)
+            
+            exp.fulfill()
+        }
+        productVM.fetchProducts(onSale: true)
         
         waitForExpectations(timeout: 10, handler: nil)
     }

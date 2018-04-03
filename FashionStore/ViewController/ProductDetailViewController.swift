@@ -9,7 +9,7 @@
 import UIKit
 import Kingfisher
 
-class ProductDetailViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class ProductDetailViewController: UIViewController {
     
     var productModel: ProductDetailModel?
     var productVM: ProductViewModel?
@@ -28,14 +28,30 @@ class ProductDetailViewController: UIViewController, UICollectionViewDelegate, U
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-
+        self.configureView()
+        self.populateView()
+    }
+    
+    private func configureView() {
         sizeIndexPath = nil
+        sizeCollection.delegate = self
+        sizeCollection.dataSource = self
+
+        let sizeCellNib = UINib.init(nibName: "SizeViewCell", bundle: nil)
+        sizeCollection.register(sizeCellNib, forCellWithReuseIdentifier: kSizeCellIdentifier)
+        
+        buyButton.layer.cornerRadius = CGFloat(kDiscountCornerRadius)
+        buyButton.clipsToBounds = true
+    }
+    
+    private func populateView() {
         title = productModel?.name
+        
         if let color = productModel?.color {
             colorLabel.text = "\(kColorLabelName): \(color)"
         }
-        priceLabel.text = productModel?.price
         
+        priceLabel.text = productModel?.price
         if let attrPrice = productModel?.attributedPrice {
             priceLabel.attributedText = attrPrice
         }
@@ -49,12 +65,6 @@ class ProductDetailViewController: UIViewController, UICollectionViewDelegate, U
             }
         }
         
-        sizeCollection.delegate = self
-        sizeCollection.dataSource = self
-
-        let sizeCellNib = UINib.init(nibName: "SizeViewCell", bundle: nil)
-        sizeCollection.register(sizeCellNib, forCellWithReuseIdentifier: kSizeCellIdentifier)
-        
         if let imageUrl = productModel?.imageUrl, let url = URL(string: imageUrl) {
             productImage.contentMode = .scaleAspectFit
             productImage.kf.setImage(with: url,
@@ -63,23 +73,43 @@ class ProductDetailViewController: UIViewController, UICollectionViewDelegate, U
             productImage.contentMode = .center
             productImage.image = UIImage(named: kProductNoImageName)
         }
-        
-        buyButton.layer.cornerRadius = CGFloat(kDiscountCornerRadius)
-        buyButton.clipsToBounds = true
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func buyButtonClicked(_ sender: UIButton) {
+        if self.sizeIndexPath == nil {
+            self.toogleSizeBorder(true)
+            return
+        }
+        
+        if let productIP = self.productIndexPath, let sizeIP = self.sizeIndexPath {
+            self.productVM?.addToCartProduct(at: productIP, sizeAt: sizeIP)
+            
+            self.performSegue(withIdentifier: kCartSegue, sender: nil)
+        }
     }
     
+    private func toogleSizeBorder(_ show: Bool) {
+        let indexPath = sizeCollection.indexPathsForVisibleItems
+        let _ = indexPath.map({ index in
+            if let cell = sizeCollection.cellForItem(at: index) as? SizeViewCell {
+                if show {
+                    cell.toggleBorderWarning()
+                } else {
+                    cell.layer.borderWidth = 0.0
+                }
+            }
+        })
+    }
+}
+
+extension ProductDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return productModel?.sizes.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kSizeCellIdentifier, for: indexPath) as? SizeViewCell {
-        
+            
             cell.configure(productModel?.sizes[indexPath.row] ?? "")
             if (productModel?.sizes.count == 1) {
                 self.sizeIndexPath = indexPath
@@ -93,8 +123,9 @@ class ProductDetailViewController: UIViewController, UICollectionViewDelegate, U
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.sizeIndexPath = indexPath
-        let cell = collectionView.cellForItem(at: indexPath)
-        cell?.backgroundColor = .black
+        if let cell = collectionView.cellForItem(at: indexPath) {
+            cell.backgroundColor = .black
+        }
         
         toogleSizeBorder(false)
     }
@@ -114,37 +145,5 @@ class ProductDetailViewController: UIViewController, UICollectionViewDelegate, U
         let bottomInset = topInset
         
         return UIEdgeInsetsMake(topInset, leftInset, bottomInset, rightInset)
-    }
-    
-    @IBAction func buyButtonClicked(_ sender: UIButton) {
-        if self.sizeIndexPath == nil {
-            self.toogleSizeBorder(true)
-            return
-        }
-        
-        if let productIP = self.productIndexPath, let sizeIP = self.sizeIndexPath {
-            guard let product = productVM?.getProductModel(at: productIP) else {
-                return
-            }
-            guard let size = productVM?.getAvailableSize(product, at: sizeIP) else {
-                return
-            }
-            CartViewModel.shared.addProduct(product, of: size)
-            
-            self.performSegue(withIdentifier: kCartSegue, sender: nil)
-        }
-    }
-    
-    private func toogleSizeBorder(_ show: Bool) {
-        let indexPath = sizeCollection.indexPathsForVisibleItems
-        let _ = indexPath.map({ index in
-            if let cell = sizeCollection.cellForItem(at: index) as? SizeViewCell {
-                if show {
-                    cell.toggleBorderWarning()
-                } else {
-                    cell.layer.borderWidth = 0.0
-                }
-            }
-        })
     }
 }
