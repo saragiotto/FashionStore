@@ -58,6 +58,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2248A7E2A8E6FC4067A3B5E1 /* Pods_FashionStoreUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FashionStoreUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FD97D8DB2F915E7F87EB9B2 /* Pods_FashionStore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FashionStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		982463E9206D654D002E3F40 /* FashionStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FashionStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		982463EC206D654D002E3F40 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -133,6 +134,7 @@
 			children = (
 				2FD97D8DB2F915E7F87EB9B2 /* Pods_FashionStore.framework */,
 				F2AFF3E59AB6DCBFA44D8728 /* Pods_FashionStoreTests.framework */,
+				2248A7E2A8E6FC4067A3B5E1 /* Pods_FashionStoreUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -759,6 +761,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K2EC4B8BC2;
 				INFOPLIST_FILE = FashionStoreTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.home.FashionStoreTests;
@@ -776,6 +779,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K2EC4B8BC2;
 				INFOPLIST_FILE = FashionStoreTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.home.FashionStoreTests;
@@ -826,7 +830,7 @@
 				98246405206D654D002E3F40 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		98246406206D654D002E3F40 /* Build configuration list for PBXNativeTarget "FashionStore" */ = {
 			isa = XCConfigurationList;
@@ -835,7 +839,7 @@
 				98246408206D654D002E3F40 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		98246409206D654D002E3F40 /* Build configuration list for PBXNativeTarget "FashionStoreTests" */ = {
 			isa = XCConfigurationList;
@@ -844,7 +848,7 @@
 				9824640B206D654D002E3F40 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		98744B442072CCA100A8CB8F /* Build configuration list for PBXNativeTarget "FashionStoreUITests" */ = {
 			isa = XCConfigurationList;
@@ -853,7 +857,7 @@
 				98744B462072CCA100A8CB8F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

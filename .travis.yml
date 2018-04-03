@@ -14,4 +14,4 @@ before_install:
 after_success: 
   - bash <(curl -s https://codecov.io/bash) -X coveragepy -X gcov -t ba92fd5d-4148-4a70-ac23-f2eaa4da6c19
 script:
-- set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace FashionStore.xcworkspace -scheme FashionStore -sdk iphonesimulator11.2 -destination 'platform=iOS Simulator,name=iPhone 8,OS=11.2' ONLY_ACTIVE_ARCH=YES VALID_ARCHS=x86_64 | xcpretty
+- set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace FashionStore.xcworkspace -scheme FashionStore -sdk iphonesimulator11.3 -destination 'platform=iOS Simulator,name=iPhone 8,OS=11.3' ONLY_ACTIVE_ARCH=YES VALID_ARCHS=x86_64 | xcpretty
